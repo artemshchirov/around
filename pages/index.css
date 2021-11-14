@@ -21,7 +21,13 @@
 @import url(../blocks/border/border.css);
 
 /* profile */
-@import url(../blo);
+@import url(../blocks/profile/profile.css);
+@import url(../blocks/profile/__avatar/profile__avatar.css);
+@import url(../blocks/profile/__name-edit-container/profile__name-edit-container.css);
+@import url(../blocks/profile/__name/profile__name.css);
+@import url(../blocks/profile/__edit-btn/profile__edit-btn.css);
+@import url(../blocks/profile/__about/profile__about.css);
+@import url(../blocks/profile/__add-btn/profile__add-btn.css);
 
 /* cards */
 @import url(../);

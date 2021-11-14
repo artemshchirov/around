@@ -1,0 +1,11 @@
+.profile__edit-btn {
+    min-width: 18px;
+    min-height: 18px;
+    margin-left: 10px;
+    align-self: center;
+    background-image: url(../../../images/pen.svg);
+    background-position: center;
+    background-repeat: no-repeat;
+    box-sizing: border-box;
+    border: 1px solid #fff;
+}
