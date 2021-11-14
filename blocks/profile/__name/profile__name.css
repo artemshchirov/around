@@ -11,10 +11,8 @@
 
 @media screen and (min-width: 1024px) {
     .profile__name {
-        margin: 0;
         max-width: 450px;
         font-size: 42px;
         line-height: 1.14;
-        flex-direction: column;
     }
 }
