@@ -1,7 +1,7 @@
 .page__container {
     min-width: calc(320px - 19px*2);
     max-width: calc(1280px - 200px*2);
-    width: 100%;
+    /* width: 100%; */
     min-height: 100vh;
     display: flex;
     flex-direction: column;
