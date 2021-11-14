@@ -8,3 +8,12 @@
     box-sizing: border-box;
     border: 2px solid #fff;
 }
+
+@media screen and (min-width: 1024px) {
+    .profile__add-btn {
+        margin: 0;
+        min-width: 150px;
+        min-height: 50px;
+        justify-self: end;
+    }
+}
