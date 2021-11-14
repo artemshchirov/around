@@ -1,0 +1,9 @@
+.page {
+    border: 1px solid red;
+    margin: 0;
+    background-color: #000;
+    color: #fff;
+    font-family: 'Inter', Arial, sans-serif;
+    font-weight: 400;
+}
+
