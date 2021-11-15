@@ -2,11 +2,7 @@
     margin-left: 10px;
     width: 18px;
     height: 18px;
-    background-image: url(../../../images/pen.svg);
-    background-position: center;
-    background-repeat: no-repeat;
-    box-sizing: border-box;
-    border: 1px solid #fff;
+    cursor: pointer;
 }
 
 @media screen and (min-width: 1024px) {
