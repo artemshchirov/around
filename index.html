@@ -25,7 +25,7 @@
                 <div class="profile__info-edit-container">
                     <div class="profile__name-edit-container">
                         <h1 class="profile__name">
-                            Фродо Беггинс
+                            Жак-Ив Кусто
                         </h1>
                         <svg class="profile__edit-btn" width="18" height="18" viewBox="0 0 18 18" fill="none"
                             xmlns="http://www.w3.org/2000/svg">
@@ -36,7 +36,7 @@
                         </svg>
                     </div>
                     <p class="profile__about">
-                        Исследователь Средиземья
+                        Исследователь океана
                     </p>
                 </div>
                 <svg class="profile__add-btn" width="282" height="50" viewBox="0 0 282 50" fill="none"
@@ -127,11 +127,17 @@
                         fill="white" />
                 </svg>
                 <form class="form">
-                    <legend class="popup__title">
-                        Редактирование профиля
+                    <legend class="form__title">
+                        Редактировать профиль
                     </legend>
-                    <input class="form__input_username" type="text" name="username" id="username">
+                    <input class="form__input" type="text" name="profile-username" id="profile-username">
+                    <input class="form__input" type="text" name="profile-about" id="profile-about">
                 </form>
+                <div class="popup__save-btn">
+                    <p class="popup__save-btn-text">
+                        Сохранить
+                    </p>
+                </div>
             </div>
         </div>
         <script src="./scripts/index.js"></script>

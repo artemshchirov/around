@@ -1,0 +1,13 @@
+.popup__save-btn-text {
+    margin: 0;
+    font-weight: normal;
+    font-size: 14px;
+    line-height: 1.21;
+}
+
+@media screen and (min-width: 698px) {
+    .popup__save-btn-text {
+        font-size: 18px;
+        line-height: 1.22;
+    }
+}
