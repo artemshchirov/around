@@ -5,3 +5,9 @@
     gap: 20px 17px;
     justify-content: center;
 }
+
+@media screen and (max-width: 1024px) {
+    .cards {
+        padding-top: 47.25px;
+    }
+}

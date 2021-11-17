@@ -7,6 +7,6 @@
 @media screen and (min-width: 1024px) {
     .profile__avatar {
         margin-left: 0;
-        
+        height: 127.5px;
     }
 }

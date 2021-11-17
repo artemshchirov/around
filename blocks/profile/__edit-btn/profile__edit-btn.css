@@ -3,6 +3,11 @@
     width: 18px;
     height: 18px;
     cursor: pointer;
+    transition: opacity .2s;
+}
+
+.profile__edit-btn:hover {
+    opacity: .8;
 }
 
 @media screen and (min-width: 1024px) {
