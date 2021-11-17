@@ -1,9 +1,18 @@
 .header {
-    padding: 0 0 31.6px 27px;
+    border-bottom: 1px solid rgba(84, 84, 84, 0.7);
+    max-width: 320px;
+    min-height: 56px;
+}
+
+@media screen and (min-width: 698px) {
+    .header {
+        min-height: 74px;
+        max-width: calc(698px - 50px*2);
+    }
 }
 
 @media screen and (min-width: 1024px) {
     .header {
-        padding: 0 0 41px;
+        max-width: calc(1280px - 200px*2);
     }
 }
