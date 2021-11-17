@@ -158,20 +158,22 @@
                         fill="white" />
                 </svg>
                 <form class="form">
-                    <legend class="form__title">
-                        Редактировать профиль
-                    </legend>
-                    <input class="form__input" type="text" name="profile-username" id="profile-username">
-                    <input class="form__input" type="text" name="profile-about" id="profile-about">
+                    <fieldset class="form__container">
+                        <legend class="form__title">
+                            Редактировать профиль
+                        </legend>
+                        <input class="form__input" type="text" placeholder="Жак-Ив Кусто" required value="Жак-Ив Кусто">
+                        <input class="form__input" type="text" placeholder="Исследователь океана" required value="Исследователь океана">
+                        <button class="form__save-btn form__save-btn-text" type="submit">
+                            Сохранить
+                        </button>
+                    </fieldset>
                 </form>
-                <div class="popup__save-btn">
-                    <p class="popup__save-btn-text">
-                        Сохранить
-                    </p>
-                </div>
+
             </div>
         </div>
-        <script src="./scripts/index.js"></script>
+    </div>
+    <script src="./scripts/index.js"></script>
 </body>
 
 </html>
