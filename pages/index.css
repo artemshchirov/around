@@ -13,7 +13,6 @@
 @import url(../blocks/content/__section/content__section.css);
 /* header */
 @import url(../blocks/logo/logo.css);
-@import url(../blocks/logo/__image/logo__image.css);
 @import url(../blocks/header/header.css);
 /* button */
 @import url(../blocks/button/button.css);
