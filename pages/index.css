@@ -15,6 +15,14 @@
 @import url(../blocks/logo/logo.css);
 @import url(../blocks/logo/__image/logo__image.css);
 @import url(../blocks/header/header.css);
+/* button */
+@import url(../blocks/button/button.css);
+@import url(../blocks/button/__img/button__img.css);
+@import url(../blocks/button/_profile/button_profile_edit.css);
+@import url(../blocks/button/_profile/button_profile_edit-img.css);
+@import url(../blocks/button/_profile/button_profile_add.css);
+@import url(../blocks/button/_profile/button_profile_add-img.css);
+@import url(../blocks/button/_form/button_form_submit.css);
 /* profile */
 @import url(../blocks/profile/profile.css);
 @import url(../blocks/profile/__avatar/profile__avatar.css);
