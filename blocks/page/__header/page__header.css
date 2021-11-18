@@ -1,4 +1,11 @@
 .page__header {
-    width: 100%;
     margin: 0 auto;
+    padding-left: 27px;
+    width: 100%;
+}
+
+@media screen and (min-width: 698px) {
+    .page__header {
+        padding-left: 0;
+    }
 }
