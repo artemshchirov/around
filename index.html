@@ -21,18 +21,22 @@
         <main class="content page__content">
             <section class="profile section content__section">
                 <img src="./images/avatar.jpg" alt="" class="profile__avatar">
-                <div class="profile__info-edit-container">
-                    <div class="profile__name-edit-container">
+                <div class="profile__content">
+                    <div class="profile__name-btn-container">
                         <h1 class="profile__name">
                             Жак-Ив Кусто
                         </h1>
-                        <img src="./images/edit_btn.svg" alt="Редактировать профиль" class="profile__edit-btn">
+                        <button class="button button_profile_edit" type="button">
+                            <img src="./images/edit_btn.svg" alt="Редактировать профиль" class="button__img button__img_profile_edit">
+                        </button>
                     </div>
                     <p class="profile__about">
                         Исследователь океана
                     </p>
                 </div>
-                <img src="./images/add_btn.svg" alt="Добавить карточку" class="profile__add-btn">
+                <button class="button button_profile_add" type="button">
+                    <img src="./images/add_btn.svg" alt="Добавить карточку" class="button__img button__img_profile_add">
+                </button>
             </section>
             <section class="cards section content__section">
                 <article class="card">
@@ -42,8 +46,10 @@
                         <h2 class="card__title">
                             Шир
                         </h2>
-                        <img src="./images/like_disabled.svg" alt="Сердечко" class="card__like">
-                    </div>
+                        <button class="button button_like" type="button">
+                            <img src="./images/like_disabled.svg" alt="Сердечко" class="button__img">
+                        </button>
+                        </div>
                 </article>
                 <article class="card">
                     <img src="./images/rivendell.jpg"
@@ -53,7 +59,9 @@
                         <h2 class="card__title">
                             Ривенделл
                         </h2>
-                        <img src="./images/like_disabled.svg" alt="Сердечко" class="card__like">
+                        <button class="button button_like" type="button">
+                            <img src="./images/like_disabled.svg" alt="Сердечко" class="button__img">
+                        </button>
                     </div>
                 </article>
                 <article class="card">
@@ -63,7 +71,9 @@
                         <h2 class="card__title">
                             г. Мория
                         </h2>
-                        <img src="./images/like_disabled.svg" alt="Сердечко" class="card__like">
+                        <button class="button button_like" type="button">
+                            <img src="./images/like_disabled.svg" alt="Сердечко" class="button__img">
+                        </button>
                     </div>
                 </article>
                 <article class="card">
@@ -74,7 +84,9 @@
                         <h2 class="card__title">
                             Столпы Аргоната
                         </h2>
-                        <img src="./images/like_disabled.svg" alt="Сердечко" class="card__like">
+                        <button class="button button_like" type="button">
+                            <img src="./images/like_disabled.svg" alt="Сердечко" class="button__img">
+                        </button>
                     </div>
                 </article>
                 <article class="card">
@@ -84,7 +96,9 @@
                         <h2 class="card__title">
                             Лотлориэн
                         </h2>
-                        <img src="./images/like_disabled.svg" alt="Сердечко" class="card__like">
+                        <button class="button button_like" type="button">
+                            <img src="./images/like_disabled.svg" alt="Сердечко" class="button__img">
+                        </button>
                     </div>
                 </article>
                 <article class="card">
@@ -95,7 +109,9 @@
                         <h2 class="card__title">
                             Мордор
                         </h2>
-                        <img src="./images/like_disabled.svg" alt="Сердечко" class="card__like">
+                        <button class="button button_like" type="button">
+                            <img src="./images/like_disabled.svg" alt="Сердечко" class="button__img">
+                        </button>
                     </div>
                 </article>
             </section>
@@ -108,7 +124,7 @@
         <div class="popup">
             <div class="popup__overlay"></div>
             <div class="popup__container">
-                <img src="./images/close_icon.svg" alt="Закрыть" class="popup__close">
+                <img src="./images/close_icon.svg" alt="Закрыть редактирование" class="popup__close">
                 <form class="form">
                     <fieldset class="form__container">
                         <legend class="form__title">
@@ -117,7 +133,7 @@
                         <input class="form__input" type="text" placeholder="Жак-Ив Кусто" required value="Жак-Ив Кусто">
                         <input class="form__input" type="text" placeholder="Исследователь океана" required
                             value="Исследователь океана">
-                        <button class="form__save-btn" type="submit">
+                        <button class="button button_form_submit" type="submit">
                             Сохранить
                         </button>
                     </fieldset>

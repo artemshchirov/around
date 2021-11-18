@@ -17,21 +17,21 @@
 @import url(../blocks/header/header.css);
 /* button */
 @import url(../blocks/button/button.css);
-@import url(../blocks/button/__img/button__img.css);
 @import url(../blocks/button/_profile/button_profile_edit.css);
-@import url(../blocks/button/_profile/button_profile_edit-img.css);
 @import url(../blocks/button/_profile/button_profile_add.css);
-@import url(../blocks/button/_profile/button_profile_add-img.css);
+@import url(../blocks/button/_like/button_like.css);
+@import url(../blocks/button/__img/button__img.css);
+@import url(../blocks/button/__img/_profile/button__img_profile_edit.css);
+@import url(../blocks/button/__img/_profile/button__img_profile_add.css);
+@import url(../blocks/button/__img/_like/button__img_like_active.css);
 @import url(../blocks/button/_form/button_form_submit.css);
 /* profile */
 @import url(../blocks/profile/profile.css);
 @import url(../blocks/profile/__avatar/profile__avatar.css);
-@import url(../blocks/profile/__info-edit-container/profile__info-edit-container.css);
-@import url(../blocks/profile/__name-edit-container/profile__name-edit-container.css);
+@import url(../blocks/profile/__content/profile__content.css);
+@import url(../blocks/profile/__name-btn-container/profile__name-btn-container.css);
 @import url(../blocks/profile/__name/profile__name.css);
-@import url(../blocks/profile/__edit-btn/profile__edit-btn.css);
 @import url(../blocks/profile/__about/profile__about.css);
-@import url(../blocks/profile/__add-btn/profile__add-btn.css);
 /* cards */
 @import url(../blocks/cards/cards.css);
 /* card */
@@ -39,8 +39,6 @@
 @import url(../blocks/card/__image/card__image.css);
 @import url(../blocks/card/__title-like-container/card__title-like-container.css);
 @import url(../blocks/card/__title/card__title.css);
-@import url(../blocks/card/__like/card__like.css);
-@import url(../blocks/card/__like/_active/card__like_active.css);
 /* footer */
 @import url(../blocks/footer/footer.css);
 @import url(../blocks/footer/__copyright/footer__copyright.css);
@@ -54,4 +52,3 @@
 @import url(../blocks/form/__container/form__container.css);
 @import url(../blocks/form/__title/form__title.css);
 @import url(../blocks/form/__input/form__input.css);
-@import url(../blocks/form/__save-btn/form__save-btn.css);

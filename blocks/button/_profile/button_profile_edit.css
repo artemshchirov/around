@@ -1,0 +1,15 @@
+.button_profile_edit {
+    margin-left: 10px;
+    background-color: #000;
+    transition: opacity .2s;
+}
+
+.button_profile_edit:hover {
+    opacity: .8;
+}
+
+@media screen and (min-width: 1024px) {
+    .button_profile_edit {
+        margin-left: 18px;
+    }
+}

@@ -1,0 +1,10 @@
+.profile__name-btn-container {
+    padding-top: 22.25px;
+    display: flex;
+}
+
+@media screen and (min-width: 1024px) {
+    .profile__name-btn-container {
+        padding-top: 0;
+    }
+}

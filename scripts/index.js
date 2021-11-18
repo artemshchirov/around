@@ -1,8 +1,7 @@
 // open, close popup
-const editBtn = document.querySelector('.profile__edit-btn');
+const editBtn = document.querySelector('.button_profile_edit');
 const popupElement = document.querySelector('.popup');
 const popupCloseBtn = popupElement.querySelector('.popup__close');
-// const popupOverlay = popupElement.querySelector('.popup__overlay');
 
 function open() {
     popupElement.classList.add('popup_opened');
@@ -13,7 +12,6 @@ const close = () => {
 
 editBtn.addEventListener('click', open);
 popupCloseBtn.addEventListener('click', close);
-// popupOverlay.addEventListener('click', close);
 
 // save inputs and close popup
 const profile = document.querySelector('.profile');

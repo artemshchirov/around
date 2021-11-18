@@ -1,0 +1,10 @@
+.button_like {
+    width: 22px;
+    height: 19px;
+    background-color: #fff;
+    transition: opacity .1s;
+}
+
+.button_like:hover {
+    opacity: .5;
+}
