@@ -20,7 +20,7 @@
         </header>
         <main class="content page__content">
             <section class="profile section content__section">
-                <img src="./images/avatar.jpg" alt="" class="profile__avatar">
+                <img src="./images/avatar.jpg" alt="Изображение пользователя" class="profile__avatar">
                 <div class="profile__content">
                     <div class="profile__name-btn-container">
                         <h1 class="profile__name">
@@ -125,14 +125,13 @@
             <div class="popup__overlay"></div>
             <div class="popup__container">
                 <img src="./images/close_icon.svg" alt="Закрыть редактирование" class="popup__close">
-                <form class="form">
+                <form class="form" name="profile-edit_form">
                     <fieldset class="form__container">
                         <legend class="form__title">
                             Редактировать профиль
                         </legend>
-                        <input class="form__input" type="text" placeholder="Жак-Ив Кусто" required value="Жак-Ив Кусто">
-                        <input class="form__input" type="text" placeholder="Исследователь океана" required
-                            value="Исследователь океана">
+                        <input class="form__input" name="name-edit_input" id="name-edit_input_id" type="text" placeholder="Имя" required>
+                        <input class="form__input" name="about-edit_input" id="about-edit_input_id" type="text" placeholder="Профессия" required>
                         <button class="button button_form_submit" type="submit">
                             Сохранить
                         </button>

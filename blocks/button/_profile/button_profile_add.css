@@ -8,6 +8,7 @@
     transition: opacity .2s;
     box-sizing: border-box;
     border: 2px solid #fff;
+    border-radius: 2px;
     display: flex;
     justify-content: center;
     align-items: center;
