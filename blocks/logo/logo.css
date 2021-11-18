@@ -1,0 +1,9 @@
+.logo {
+    padding-left: 27px;
+}
+
+@media screen and (min-width: 698px) {
+    .logo {
+        padding-left: 0;
+    }
+}

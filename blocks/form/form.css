@@ -1,6 +1,5 @@
 .form {
     width: 238px;
-    height: 181px;
     display: flex;
     flex-direction: column;
     justify-content: space-between;
@@ -9,6 +8,5 @@
 @media screen and (min-width: 698px) {
     .form {
         width: 358px;
-        height: 161px;
     }
 }
