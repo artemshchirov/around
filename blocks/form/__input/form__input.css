@@ -8,7 +8,7 @@
     font-weight: normal;
     font-size: 14px;
     line-height: 1.21;
-    outline-color: yellow;
+    outline: none;
 }
 
 .form__input:first-of-type {
