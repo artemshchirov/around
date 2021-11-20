@@ -2,14 +2,11 @@
     margin: 45px 0 0;
     width: 238px;
     height: 46px;
-    background-color: #000;
     color: #fff;
     border-radius: 2px;
-    font-weight: normal;
     font-size: 14px;
     line-height: 1.21;
-    cursor: pointer;
-    transition: opacity .2s;
+    background-color: #000;
 }
 
 .button_form_submit:hover {
