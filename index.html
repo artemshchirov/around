@@ -2,131 +2,112 @@
 <html lang="ru">
 
 <head>
-    <meta charset="UTF-8">
-    <title>Место</title>
-    <meta name="description" content="Галерея мест">
-    <meta name="viewport" content="width=device-width, initial-scale=1">
-    <meta name="keywords" content="интересное место, необычная локация, социальная сеть">
-    <meta name="author" content="Артём Щиров на Яндекс Практикум">
-    <link rel="stylesheet" href="./pages/index.css">
+   <meta charset="UTF-8" />
+   <title>Место</title>
+   <meta name="description" content="Галерея мест" />
+   <meta name="viewport" content="width=device-width, initial-scale=1" />
+   <meta name="keywords" content="интересное место, необычная локация, социальная сеть" />
+   <meta name="author" content="Артём Щиров на Яндекс Практикум" />
+   <link rel="stylesheet" href="./pages/index.css" />
 </head>
 
 <body class="page">
-    <div class="page__container">
-        <header class="header page__header">
-            <a href="https://artemschirov.github.io/mesto/index.html">
-                <img src="./images/logo-mesto.svg" alt="Логотип 'Место'" class="logo">
-            </a>
-        </header>
-        <main class="content page__content">
-            <section class="profile section content__section">
-                <img src="./images/avatar.jpg" alt="Изображение пользователя" class="profile__avatar">
-                <div class="profile__content">
-                    <div class="profile__name-btn-container">
-                        <h1 class="profile__name">
-                            Жак-Ив Кусто
-                        </h1>
-                        <button class="button button_profile_edit" type="button"></button>
-                    </div>
-                    <p class="profile__about">
-                        Исследователь океана
-                    </p>
-                </div>
-                <button class="button button_profile_add" type="button"></button>
-            </section>
-            <section class="cards section content__section">
-                <article class="card">
-                    <img src="./images/shire.jpg"
-                        alt="Шир - деревня хоббитов с обустроенные домами-норами внутри холмов" class="card__image">
-                    <div class="card__title-like-container">
-                        <h2 class="card__title">
-                            Шир
-                        </h2>
-                        <button class="button button_like" type="button"></button>
-                    </div>
-                </article>
-                <article class="card">
-                    <img src="./images/rivendell.jpg"
-                        alt="Ривенделл - эльфийский город с высокими белыми башнями в горах, покрытых лесом"
-                        class="card__image">
-                    <div class="card__title-like-container">
-                        <h2 class="card__title">
-                            Ривенделл
-                        </h2>
-                        <button class="button button_like" type="button"></button>
-                    </div>
-                </article>
-                <article class="card">
-                    <img src="./images/moria.jpeg" alt="гора Мория - большая пещера с каменным мостом над бездной"
-                        class="card__image">
-                    <div class="card__title-like-container">
-                        <h2 class="card__title">
-                            г. Мория
-                        </h2>
-                        <button class="button button_like" type="button"></button>
-                    </div>
-                </article>
-                <article class="card">
-                    <img src="./images/lotr.jpg"
-                        alt="Столпы Аргоната -  — монумент, состоящий из двух огромной величины статуй, высеченных в скалах и изображающих Исильдура и Анариона, стоящих по обе стороны реки Андуин на северных подходах к Нен Хитоэль."
-                        class="card__image">
-                    <div class="card__title-like-container">
-                        <h2 class="card__title">
-                            Столпы Аргоната
-                        </h2>
-                        <button class="button button_like" type="button"></button>
-                    </div>
-                </article>
-                <article class="card">
-                    <img src="./images/lothlorien.jpg"
-                        alt="Обширный разноцветный лес. Среди деревьев виднеется эльфийский город" class="card__image">
-                    <div class="card__title-like-container">
-                        <h2 class="card__title">
-                            Лотлориэн
-                        </h2>
-                        <button class="button button_like" type="button"></button>
-                    </div>
-                </article>
-                <article class="card">
-                    <img src="./images/mordor.jpg"
-                        alt=" Мордор —  область на юго-востоке Средиземья к востоку от Андуина, владения Саурона"
-                        class="card__image">
-                    <div class="card__title-like-container">
-                        <h2 class="card__title">
-                            Мордор
-                        </h2>
-                        <button class="button button_like" type="button"></button>
-                    </div>
-                </article>
-            </section>
-        </main>
-        <footer class="footer section page__footer">
-            <p class="footer__copyright">
-                &copy; 2021 Ɐртём Щиров
-            </p>
-        </footer>
-        <div class="popup">
-            <div class="popup__container">
-                <button class="button button_form_close" type="button"></button>
-                <form class="form" name="profile-edit_form">
-                    <fieldset class="form__container">
-                        <legend class="form__title">
-                            Редактировать профиль
-                        </legend>
-                        <input class="form__input" name="name-edit_input" id="name-edit_input_id" type="text"
-                            placeholder="Имя" required>
-                        <input class="form__input" name="about-edit_input" id="about-edit_input_id" type="text"
-                            placeholder="Профессия" required>
-                        <button class="button button_form_submit" type="submit">
-                            Сохранить
-                        </button>
-                    </fieldset>
-                </form>
-
+   <div class="page__container">
+      <header class="header page__header">
+         <a href="https://artemschirov.github.io/mesto/index.html">
+            <img src="./images/logo-mesto.svg" alt="Логотип 'Место'" class="logo" />
+         </a>
+      </header>
+      <main class="content page__content butt">
+         <section class="profile section content__section">
+            <img src="./images/avatar.jpg" alt="Изображение пользователя" class="profile__avatar" />
+            <div class="profile__content">
+               <div class="profile__name-btn-container">
+                  <h1 class="profile__name">Джакисо</h1>
+                  <button class="button button_profile_edit" type="button"></button>
+               </div>
+               <p class="profile__about">Исследователь океана</p>
             </div>
-        </div>
-    </div>
-    <script src="./scripts/index.js"></script>
+            <button class="button button_profile_add" type="button"></button>
+         </section>
+         <section class="cards section content__section">
+            <article class="card">
+               <img src="./images/shire.jpg" alt="Шир - деревня хоббитов с обустроенные домами-норами внутри холмов"
+                  class="card__image" />
+               <div class="card__title-like-container">
+                  <h2 class="card__title">Шир</h2>
+                  <button class="button button_like" type="button"></button>
+               </div>
+            </article>
+            <article class="card">
+               <img src="./images/rivendell.jpg"
+                  alt="Ривенделл - эльфийский город с высокими белыми башнями в горах, покрытых лесом"
+                  class="card__image" />
+               <div class="card__title-like-container">
+                  <h2 class="card__title">Ривенделл</h2>
+                  <button class="button button_like" type="button"></button>
+               </div>
+            </article>
+            <article class="card">
+               <img src="./images/moria.jpeg" alt="гора Мория - большая пещера с каменным мостом над бездной"
+                  class="card__image" />
+               <div class="card__title-like-container">
+                  <h2 class="card__title">г. Мория</h2>
+                  <button class="button button_like" type="button"></button>
+               </div>
+            </article>
+            <article class="card">
+               <img src="./images/lotr.jpg"
+                  alt="Столпы Аргоната -  — монумент, состоящий из двух огромной величины статуй, высеченных в скалах и изображающих Исильдура и Анариона, стоящих по обе стороны реки Андуин на северных подходах к Нен Хитоэль."
+                  class="card__image" />
+               <div class="card__title-like-container">
+                  <h2 class="card__title">Столпы Аргоната</h2>
+                  <button class="button button_like" type="button"></button>
+               </div>
+            </article>
+            <article class="card">
+               <img src="./images/lothlorien.jpg"
+                  alt="Обширный разноцветный лес. Среди деревьев виднеется эльфийский город" class="card__image" />
+               <div class="card__title-like-container">
+                  <h2 class="card__title">Лотлориэн</h2>
+                  <button class="button button_like" type="button"></button>
+               </div>
+            </article>
+            <article class="card">
+               <img src="./images/mordor.jpg"
+                  alt=" Мордор —  область на юго-востоке Средиземья к востоку от Андуина, владения Саурона"
+                  class="card__image" />
+               <div class="card__title-like-container">
+                  <h2 class="card__title">Мордор</h2>
+                  <button class="button button_like" type="button"></button>
+               </div>
+            </article>
+         </section>
+      </main>
+      <footer class="footer section page__footer">
+         <p class="footer__copyright">&copy; 2021 Ɐртём Щиров</p>
+      </footer>
+      <div class="popup">
+         <div class="popup__container">
+            <button class="button button_form_close" type="button"></button>
+            <form class="form" name="profile-edit_form">
+               <fieldset class="form__container">
+                  <legend class="form__title">
+                     Редактировать профиль
+                  </legend>
+                  <input class="form__input" name="name-edit_input" id="name-edit_input_id" type="text"
+                     placeholder="Имя" required />
+                  <input class="form__input" name="about-edit_input" id="about-edit_input_id" type="text"
+                     placeholder="Профессия" required />
+                  <button class="button button_form_submit" type="submit">
+                     Сохранить
+                  </button>
+               </fieldset>
+            </form>
+         </div>
+      </div>
+   </div>
+   <script src="./scripts/index.js"></script>
 </body>
 
 </html>
