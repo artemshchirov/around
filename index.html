@@ -35,6 +35,17 @@
                 <button class="button button_profile_add" type="button"></button>
             </section>
             <section class="cards section content__section">
+
+                <template id="card">
+                    <article class="card">
+                        <img src="" alt="" class="card__image">
+                        <div class="card__title-like-container">
+                            <h2 class="card__title"></h2>
+                            <button class="button button_like" type="button"></button>
+                        </div>
+                    </article>
+                </template>
+
                 <article class="card">
                     <img src="./images/shire.jpg"
                         alt="Шир - деревня хоббитов с обустроенные домами-норами внутри холмов" class="card__image">
@@ -105,7 +116,7 @@
                 &copy; 2021 Ɐртём Щиров
             </p>
         </footer>
-        <div class="popup">
+        <div class="popup popup-profile-edit">
             <div class="popup__container">
                 <button class="button button_form_close" type="button"></button>
                 <form class="form" name="profile-edit_form">
@@ -122,7 +133,25 @@
                         </button>
                     </fieldset>
                 </form>
-
+            </div>
+        </div>
+        <div class="popup popup-add-card">
+            <div class="popup__container">
+                <button class="button button_form_close" type="button"></button>
+                <form class="form" name="add-card_form">
+                    <fieldset class="form__container">
+                        <legend class="form__title">
+                            Новое место
+                        </legend>
+                        <input class="form__input" name="name-card_input" id="name-card_input_id" type="text"
+                            placeholder="Название" required>
+                        <input class="form__input" name="link-card_input" id="link-card_input_id" type="text"
+                            placeholder="Ссылка на картинку" required>
+                        <button class="button button_form_submit" type="submit">
+                            Создать
+                        </button>
+                    </fieldset>
+                </form>
             </div>
         </div>
     </div>
