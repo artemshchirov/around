@@ -111,7 +111,22 @@ initialCards.forEach(function(card) {  //? DRY
     cards.prepend(userCard); 
 });
 
+function changeLikeStatus(item) {  //? Почему 1й лайк картинки игнорирует 1ю проверку if?
+    console.log(item.style.backgroundImage, '1');
+    if (item.style.backgroundImage === 'url("../../../images/like_active.svg")') {
+        item.style.backgroundImage = 'url("../../../images/like_disabled.svg")';
+    } else {
+        item.style.backgroundImage = 'url("../../../images/like_active.svg")';
+    };
+    console.log(item.style.backgroundImage, '2');
+};
 
+const likeBtns = Array.from(document.querySelectorAll('.button_like'));
+likeBtns.forEach(function(item) {
+    item.addEventListener('click', function () {
+        changeLikeStatus(item);
+    });
+});
 
 
 
