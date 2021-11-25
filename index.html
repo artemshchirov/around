@@ -35,69 +35,15 @@
                 <button class="button button_profile_add" type="button"></button>
             </section>
             <section class="cards section content__section">
-                <article class="card">
-                    <img src="./images/shire.jpg"
-                        alt="Шир - деревня хоббитов с обустроенные домами-норами внутри холмов" class="card__image">
-                    <div class="card__title-like-container">
-                        <h2 class="card__title">
-                            Шир
-                        </h2>
-                        <button class="button button_like" type="button"></button>
-                    </div>
-                </article>
-                <article class="card">
-                    <img src="./images/rivendell.jpg"
-                        alt="Ривенделл - эльфийский город с высокими белыми башнями в горах, покрытых лесом"
-                        class="card__image">
-                    <div class="card__title-like-container">
-                        <h2 class="card__title">
-                            Ривенделл
-                        </h2>
-                        <button class="button button_like" type="button"></button>
-                    </div>
-                </article>
-                <article class="card">
-                    <img src="./images/moria.jpeg" alt="гора Мория - большая пещера с каменным мостом над бездной"
-                        class="card__image">
-                    <div class="card__title-like-container">
-                        <h2 class="card__title">
-                            г. Мория
-                        </h2>
-                        <button class="button button_like" type="button"></button>
-                    </div>
-                </article>
-                <article class="card">
-                    <img src="./images/lotr.jpg"
-                        alt="Столпы Аргоната -  — монумент, состоящий из двух огромной величины статуй, высеченных в скалах и изображающих Исильдура и Анариона, стоящих по обе стороны реки Андуин на северных подходах к Нен Хитоэль."
-                        class="card__image">
-                    <div class="card__title-like-container">
-                        <h2 class="card__title">
-                            Столпы Аргоната
-                        </h2>
-                        <button class="button button_like" type="button"></button>
-                    </div>
-                </article>
-                <article class="card">
-                    <img src="./images/lothlorien.jpg"
-                        alt="Обширный разноцветный лес. Среди деревьев виднеется эльфийский город" class="card__image">
-                    <div class="card__title-like-container">
-                        <h2 class="card__title">
-                            Лотлориэн
-                        </h2>
-                        <button class="button button_like" type="button"></button>
-                    </div>
-                </article>
-                <article class="card">
-                    <img src="./images/mordor.jpg"
-                        alt=" Мордор —  область на юго-востоке Средиземья к востоку от Андуина, владения Саурона"
-                        class="card__image">
-                    <div class="card__title-like-container">
-                        <h2 class="card__title">
-                            Мордор
-                        </h2>
-                        <button class="button button_like" type="button"></button>
-                    </div>
-                </article>
+                <template id="card">
+                    <article class="card">
+                        <img src="" alt="" class="card__image">
+                        <div class="card__title-like-container">
+                            <h2 class="card__title"></h2>
+                            <button class="button button_like" type="button"></button>
+                        </div>
+                    </article>
+                </template>
             </section>
         </main>
         <footer class="footer section page__footer">
@@ -105,7 +51,7 @@
                 &copy; 2021 Ɐртём Щиров
             </p>
         </footer>
-        <div class="popup">
+        <div class="popup popup-profile-edit">
             <div class="popup__container">
                 <button class="button button_form_close" type="button"></button>
                 <form class="form" name="profile-edit_form">
@@ -122,7 +68,25 @@
                         </button>
                     </fieldset>
                 </form>
-
+            </div>
+        </div>
+        <div class="popup popup-add-card">
+            <div class="popup__container">
+                <button class="button button_form_close" type="button"></button>
+                <form class="form" name="add-card_form">
+                    <fieldset class="form__container">
+                        <legend class="form__title">
+                            Новое место
+                        </legend>
+                        <input class="form__input" name="name-card_input" id="name-card_input_id" type="text"
+                            placeholder="Название" required>
+                        <input class="form__input" name="link-card_input" id="link-card_input_id" type="text"
+                            placeholder="Ссылка на картинку" required>
+                        <button class="button button_form_submit" type="submit">
+                            Создать
+                        </button>
+                    </fieldset>
+                </form>
             </div>
         </div>
     </div>
