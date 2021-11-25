@@ -18,6 +18,9 @@ const userCardNameInput = document.getElementById('name-card_input_id');
 const userCardLinkInput = document.getElementById('link-card_input_id');
 const cards = document.querySelector('.cards');
 
+const cardTemplate = document.querySelector('#card').content;
+
+
 const openPopup = (popup) => popup.classList.add('popup_opened');
 const closePopup = (popup) => popup.classList.remove('popup_opened');
 
@@ -44,12 +47,10 @@ const formAddCardHandler = (evt) => {
     closePopup(popupSection);
 }
 const addCard = () => {
-    let cardTemplate = document.querySelector('#card').content;
     let userCard = cardTemplate.querySelector('.card').cloneNode(true);
     userCard.querySelector('.card__title').textContent = userCardNameInput.value;
     userCard.querySelector('.card__image').src = userCardLinkInput.value;
     cards.prepend(userCard);  //? Изменить на стек
-    usernameInput.value = username.textContent.trim();
     userCardNameInput.value = "";
     userCardLinkInput.value = "";
 }
@@ -69,3 +70,48 @@ popupAddCardCloseBtn.addEventListener('click', function (evt) {
     let popupSection = evt.target.parentElement.parentElement;
     closePopup(popupSection);
 });
+
+const initialCards = [
+    {
+        name: 'Мордор',
+        link: './images/mordor.jpg',
+        alt: 'Мордор —  область на юго-востоке Средиземья к востоку от Андуина, владения Саурона',
+    },
+    {
+        name: 'Лотлориэн',
+        link: './images/lothlorien.jpg',
+        alt: 'Обширный разноцветный лес. Среди деревьев виднеется эльфийский город',
+    },
+    {
+        name: 'Столпы Аргоната',
+        link: './images/lotr.jpg',
+        alt: 'Столпы Аргоната -  — монумент, состоящий из двух огромной величины статуй, высеченных в скалах и изображающих Исильдура и Анариона, стоящих по обе стороны реки Андуин на северных подходах к Нен Хитоэль.',
+    },
+    {
+        name: 'г. Мория',
+        link: './images/moria.jpeg',
+        alt: 'гора Мория - большая пещера с каменным мостом над бездной',
+    },
+    {
+        name: 'Ривенделл',
+        link: './images/rivendell.jpg',
+        alt: 'Ривенделл - эльфийский город с высокими белыми башнями в горах, покрытых лесом',
+    },
+    {
+        name: 'Шир',
+        link: './images/shire.jpg',
+        alt: 'Шир - деревня хоббитов с обустроенные домами-норами внутри холмов',
+    },
+];
+initialCards.forEach(function(card) {  //? DRY
+    let userCard = cardTemplate.querySelector('.card').cloneNode(true);
+    userCard.querySelector('.card__title').textContent = card.name;
+    userCard.querySelector('.card__image').src = card.link;
+    userCard.querySelector('.card__image').alt = card.alt;  //? Почему не отображается?
+    cards.prepend(userCard); 
+});
+
+
+
+
+
