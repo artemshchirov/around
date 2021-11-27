@@ -21,6 +21,7 @@
 @import url(../blocks/button/_like/button_like.css);
 @import url(../blocks/button/_form/button_form_close.css);
 @import url(../blocks/button/_form/button_form_submit.css);
+@import url(../blocks/button/_delete-card/button_delete-card.css);
 /* profile */
 @import url(../blocks/profile/profile.css);
 @import url(../blocks/profile/__avatar/profile__avatar.css);
