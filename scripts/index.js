@@ -69,13 +69,13 @@ const openProfileEditPopup = () => {
     openPopup(popupProfileEdit);
     fillInputsUserData();
 }
-const refreshProfile = () => {
+const refreshProfileNameAbout = () => {
     username.textContent = usernameInput.value;
     about.textContent = aboutInput.value;
 }
 const formProfileEditHandler = evt => {
     evt.preventDefault();
-    refreshProfile();
+    refreshProfileNameAbout();
     let popupSection = evt.target.parentElement.parentElement;
     closePopup(popupSection);
 }
@@ -85,26 +85,43 @@ const formAddCardHandler = evt => {
     let popupSection = evt.target.parentElement.parentElement;
     closePopup(popupSection);
 }
+
+const renderIcon = (cls, btnsArr, func) => {
+    let btn = document.querySelector(cls);
+    btnsArr.unshift(btn);
+    btnsArr[0].addEventListener('click', () => func(btnsArr[0]));
+}
+
+const changeLikeStatus = icon => {
+    if (icon.style.backgroundImage.includes('like_active.svg')) {
+        icon.style.backgroundImage = 'url("./images/like_disabled.svg")';
+    } else {
+        icon.style.backgroundImage = 'url("./images/like_active.svg")';
+    };
+};
+const deleteCard = icon => {
+    console.log(icon);
+    console.log(cards);
+}
+
 const addCard = () => {
     let userCard = cardTemplate.querySelector('.card').cloneNode(true);
     userCard.querySelector('.card__title').textContent = userCardNameInput.value;
     userCard.querySelector('.card__image').src = userCardLinkInput.value;
-    cards.prepend(userCard);
     userCardNameInput.value = "";
     userCardLinkInput.value = "";
+    cards.prepend(userCard);
+    renderIcon('.button_like', likeBtns, changeLikeStatus);
+    renderIcon('.button_delete-card', deleteBtns, deleteCard);
 }
-const changeLikeStatus = item => {
-    if (item.style.backgroundImage.includes('like_active.svg')) {
-        item.style.backgroundImage = 'url("./images/like_disabled.svg")';
-    } else {
-        item.style.backgroundImage = 'url("./images/like_active.svg")';
-    };
-};
+
 
 drawInitialCards();
 const likeBtns = Array.from(document.querySelectorAll('.button_like'));
+const deleteBtns = Array.from(document.querySelectorAll('.button_delete-card'));
 
-likeBtns.forEach(item => item.addEventListener('click', () => changeLikeStatus(item)));
+likeBtns.forEach(icon => icon.addEventListener('click', () => changeLikeStatus(icon)));
+deleteBtns.forEach(icon => icon.addEventListener('click', () => deleteCard(icon)));
 editProfileBtn.addEventListener('click', openProfileEditPopup);
 addCardBtn.addEventListener('click', () => openPopup(popupAddCard));
 formProfileEdit.addEventListener('submit', formProfileEditHandler);
