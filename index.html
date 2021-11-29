@@ -39,7 +39,7 @@
                 <template id="card">
                     <article class="card">
                         <img src="" alt="" class="card__image">
-                        <button class="button button_delete-card"></button>
+                        <button class="button button_card_delete"></button>
                         <div class="card__title-like-container">
                             <h2 class="card__title"></h2>
                             <button class="button button_like" type="button"></button>
@@ -72,7 +72,7 @@
                 </form>
             </div>
         </div>
-        <div class="popup popup-add-card">
+        <div class="popup popup_card-add">
             <div class="popup__container">
                 <button class="button button_form_close" type="button"></button>
                 <form class="form" name="add-card_form">
@@ -90,6 +90,13 @@
                     </fieldset>
                 </form>
             </div>
+        </div>
+        <div class="popup popup_card-fullscreen">
+            <figure class="popup__figure">
+                <button class="button button_form_close"></button>
+                <img src="" alt="" class="popup__image">
+                <figcaption class="popup__title"></figcaption>
+            </figure>
         </div>
     </div>
 </body>

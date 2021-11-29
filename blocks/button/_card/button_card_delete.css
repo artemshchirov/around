@@ -1,4 +1,4 @@
-.button_delete-card {
+.button_card_delete {
     width: 18px;
     height: 19px;
     background-image: url('../../../images/delete_card.svg');
@@ -10,6 +10,6 @@
     right: 20px;
 }
 
-.button_delete-card:hover {
+.button_card_delete:hover {
     opacity: .5;
 }
