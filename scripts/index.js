@@ -89,6 +89,7 @@ const formAddCardHandler = evt => {
     evt.preventDefault();
     addCard();
     let popupSection = evt.target.parentElement.parentElement;
+    console.log(popupSection);
     closePopup(popupSection);
 }
 const addCard = () => {
@@ -102,8 +103,7 @@ const addCard = () => {
     cards.prepend(newCard);
     likeBtn.addEventListener('click', () => changeLikeStatus(likeBtn));
     deleteBtn.addEventListener('click', evt => deleteCard(evt));
-    cardFullscreen.addEventListener('click', evt => openCardFullscreen(evt));
-
+    newCard.querySelector('.card__image').addEventListener('click', evt => openCardFullscreen(evt));
     newCardNameInput.value = "";
     newCardLinkInput.value = "";
 }
@@ -126,8 +126,8 @@ const openCardFullscreen = evt => {
     popupCardFullscreen.querySelector('.popup__image').src = card.src;
     popupCardFullscreen.querySelector('.popup__title').textContent = card.textContent;
     openPopup(popupCardFullscreen);
+    popupCardFullscreen.querySelector('.popup__image').addEventListener('click', evt => closePopup(popupCardFullscreen));
     popupCardFullscreen.querySelector('.button_form_close').addEventListener('click', evt => closePopup(popupCardFullscreen));
-
 }
 
 renderInitialCards(initialCards);
@@ -136,7 +136,6 @@ const deleteCardBtns = Array.from(document.querySelectorAll('.button_card_delete
 const cardImages = Array.from(document.querySelectorAll('.card__image'));
 console.log(cardImages);
 cardImages.forEach(item => item.addEventListener('click', evt => openCardFullscreen(evt)));
-
 
 likeBtns.forEach(item => item.addEventListener('click', () => changeLikeStatus(item)));
 deleteCardBtns.forEach(item => item.addEventListener('click', evt => deleteCard(evt)));
