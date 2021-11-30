@@ -1,4 +1,4 @@
-.button_form_close {
+.button_popup_close {
     position: absolute;
     top: -36px;
     right: 0;
@@ -11,12 +11,12 @@
     background-color: transparent;
 }
 
-.button_form_close:hover {
+.button_popup_close:hover {
     opacity: .6;
 }
 
 @media screen and (min-width: 698px) {
-    .button_form_close {
+    .button_popup_close {
         top: -40px;
         right: -40px;
         width: 32px;

@@ -19,10 +19,9 @@
 @import url(../blocks/button/_profile/button_profile_edit.css);
 @import url(../blocks/button/_profile/button_profile_add.css);
 @import url(../blocks/button/_like/button_like.css);
-@import url(../blocks/button/_form/button_form_close.css);
+@import url(../blocks/button/_popup/button_popup_close.css);
 @import url(../blocks/button/_form/button_form_submit.css);
 @import url(../blocks/button/_card/button_card_delete.css);
-/* @import url(../blocks/button/_card/button_card_close.css); */
 /* profile */
 @import url(../blocks/profile/profile.css);
 @import url(../blocks/profile/__avatar/profile__avatar.css);
