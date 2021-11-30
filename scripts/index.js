@@ -14,6 +14,7 @@ const newCardLinkInput = document.getElementById('link-card_input_id');
 const cards = document.querySelector('.cards');
 const cardTemplate = document.querySelector('#card').content;
 const popupCardFullscreen = document.querySelector('.popup_card-fullscreen');
+const popupCloseBtns = Array.from(document.querySelectorAll('.button_popup_close'));
 const initialCards = [
     {
         name: 'Мордор',
@@ -47,22 +48,8 @@ const initialCards = [
     },
 ];
 
-const renderCards = arr => {
-    arr.forEach(card => {
-        let newCard = cardTemplate.querySelector('.card').cloneNode(true);
-        newCard.querySelector('.card__title').textContent = card.name;
-        newCard.querySelector('.card__image').src = card.link;
-        newCard.querySelector('.card__image').alt = card.alt;
-        cards.prepend(newCard);
-    });
-}
+const openPopup = popup => popup.classList.add('popup_opened');
 const closePopup = popup => popup.classList.remove('popup_opened');
-const openPopup = popup => {
-    popup.classList.add('popup_opened');
-    if (!popup.classList.contains('popup_smoothly')) {
-        popup.classList.add('popup_smoothly');
-    };
-}
 const fillInputsUserData = () => {
     usernameInput.value = username.textContent.trim();
     aboutInput.value = about.textContent.trim();
@@ -82,23 +69,14 @@ const formProfileEditHandler = evt => {
 }
 const formAddCardHandler = evt => {
     evt.preventDefault();
-    addCard();
+    addCard(newCardNameInput.value, newCardLinkInput.value);
     closePopup(evt.target.closest('.popup_opened'));
-}
-const addCard = () => {
-    let newCard = cardTemplate.querySelector('.card').cloneNode(true);
-    let likeBtn = newCard.querySelector('.button_like');
-    let deleteBtn = newCard.querySelector('.button_card_delete');
-    newCard.querySelector('.card__title').textContent = newCardNameInput.value;
-    newCard.querySelector('.card__image').src = newCardLinkInput.value;
-    newCard.querySelector('.card__image').alt = `Картинка пользователя: ${newCard.textContent.trim()}`;
-    cards.prepend(newCard);
     newCardNameInput.value = "";
     newCardLinkInput.value = "";
-    newCard.querySelector('.card__image').addEventListener('click', evt => openCardFullscreen(evt.target.closest('.card')));
-    likeBtn.addEventListener('click', () => changeLikeStatus(likeBtn));
-    deleteBtn.addEventListener('click', evt => deleteCard(evt.target.closest('.card')));
-
+}
+const addCard = (title, src) => {
+    const newCard = createCard({ name: title, link: src });
+    cards.prepend(newCard);
 }
 const changeLikeStatus = item => {
     if (item.style.backgroundImage.includes('like_active.svg')) {
@@ -110,21 +88,30 @@ const changeLikeStatus = item => {
 const deleteCard = evt => {
     evt.remove();
 }
-const openCardFullscreen = (evt) => {
+const openCardFullscreen = evt => {
     popupCardFullscreen.querySelector('.popup__image').src = evt.querySelector('.card__image').src;
+    popupCardFullscreen.querySelector('.popup__image').alt = evt.querySelector('.card__image').alt;
     popupCardFullscreen.querySelector('.popup__title').textContent = evt.textContent;
     openPopup(popupCardFullscreen);
 }
+const createCard = card => {
+    const cardElem = cardTemplate.querySelector('.card').cloneNode(true);
+    const cardTitle = cardElem.querySelector('.card__title');
+    const cardImage = cardElem.querySelector('.card__image');
+    const deleteBtn = cardElem.querySelector('.button_card_delete');
+    const likeBtn = cardElem.querySelector('.button_like');
+    cardTitle.textContent = card.name;
+    cardImage.src = card.link;
+    cardImage.alt = `Картинка пользователя: ${cardElem.textContent.trim()}`;
+    cardImage.addEventListener('click', evt => openCardFullscreen(evt.target.closest('.card')));
+    deleteBtn.addEventListener('click', evt => deleteCard(evt.target.closest('.card')));
+    likeBtn.addEventListener('click', () => changeLikeStatus(likeBtn));
+    return cardElem;
+}
 
-renderCards(initialCards);
-const likeBtns = Array.from(document.querySelectorAll('.button_like'));
-const deleteCardBtns = Array.from(document.querySelectorAll('.button_card_delete'));
-const cardImages = Array.from(document.querySelectorAll('.card__image'));
-const popupCloseBtn = Array.from(document.querySelectorAll('.button_popup_close, .popup__image'));
-likeBtns.forEach(item => item.addEventListener('click', () => changeLikeStatus(item)));
-deleteCardBtns.forEach(item => item.addEventListener('click', evt => deleteCard(evt.target.closest('.card'))));
-cardImages.forEach(item => item.addEventListener('click', evt => openCardFullscreen(evt.target.closest('.card'))));
-popupCloseBtn.forEach(item => item.addEventListener('click', evt => closePopup(evt.target.closest('.popup_opened'))));
+initialCards.forEach(card => cards.prepend(createCard(card)));
+
+popupCloseBtns.forEach(btn => btn.addEventListener('click', evt => closePopup(evt.target.closest('.popup_opened'))));
 editProfileBtn.addEventListener('click', openProfileEditPopup);
 addCardBtn.addEventListener('click', () => openPopup(popupAddCard));
 formProfileEdit.addEventListener('submit', formProfileEditHandler);

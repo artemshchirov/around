@@ -3,3 +3,7 @@
     opacity: 1;
     transition: visibility 0s, opacity 0.5s linear;
 }
+
+.popup_opened .popup {
+    transition: visibility .3s, opacity .3s ease-in;
+}
