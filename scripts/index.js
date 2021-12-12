@@ -4,13 +4,13 @@ const formProfileEdit = popupProfileEdit.querySelector('.form');
 const profile = document.querySelector('.profile');
 const username = profile.querySelector('.profile__name');
 const about = profile.querySelector('.profile__about');
-const usernameInput = document.getElementById('name-edit_input_id');
-const aboutInput = document.getElementById('about-edit_input_id');
+const usernameInput = document.getElementById('name-edit');
+const aboutInput = document.getElementById('about-edit');
 const popupAddCard = document.querySelector('.popup_card-add');
 const formAddCard = popupAddCard.querySelector('.form')
 const addCardBtn = document.querySelector('.button_profile_add');
-const newCardNameInput = document.getElementById('name-card_input_id');
-const newCardLinkInput = document.getElementById('link-card_input_id');
+const newCardNameInput = document.getElementById('name-card');
+const newCardLinkInput = document.getElementById('link-card');
 const cards = document.querySelector('.cards');
 const cardTemplate = document.querySelector('#card').content;
 const popupCardFullscreen = document.querySelector('.popup_card-fullscreen');
@@ -44,7 +44,7 @@ const initialCards = [
     {
         name: 'Шир',
         link: './images/shire.jpg',
-        alt: 'Шир - деревня хоббитов с обустроенные домами-норами внутри холмов',
+        alt: 'Шир - деревня хоббитов с об   устроенные домами-норами внутри холмов',
     },
 ];
 
@@ -84,7 +84,7 @@ const changeLikeStatus = item => {
     } else {
         item.style.backgroundImage = 'url("./images/like_active.svg")';
     };
-};
+}
 const deleteCard = evt => {
     evt.remove();
 }
@@ -110,7 +110,6 @@ const createCard = card => {
 }
 
 initialCards.forEach(card => cards.prepend(createCard(card)));
-
 popupCloseBtns.forEach(btn => btn.addEventListener('click', evt => closePopup(evt.target.closest('.popup_opened'))));
 editProfileBtn.addEventListener('click', openProfileEditPopup);
 addCardBtn.addEventListener('click', () => openPopup(popupAddCard));
