@@ -50,8 +50,18 @@ const initialCards = [
     },
 ];
 
-const openPopup = popup => popup.classList.add('popup_opened');
-const closePopup = popup => popup.classList.remove('popup_opened');
+const handleKey = evt => {
+    const popupOpened = document.querySelector('.popup_opened');
+    if (popupOpened && evt.key === "Escape") closePopup(popupOpened);
+}
+const openPopup = popup => {
+    document.addEventListener('keydown', handleKey);
+    popup.classList.add('popup_opened');
+}
+const closePopup = popup => {
+    document.removeEventListener('keydown', handleKey);
+    popup.classList.remove('popup_opened');
+}
 const fillInputsUserData = () => {
     usernameInput.value = username.textContent.trim();
     aboutInput.value = about.textContent.trim();
@@ -111,14 +121,9 @@ const createCard = card => {
     likeBtn.addEventListener('click', () => changeLikeStatus(likeBtn));
     return cardElem;
 }
-const handleKey = evt => {
-    const popupOpened = document.querySelector('.popup_opened');
-    if (popupOpened && evt.key === "Escape") closePopup(popupOpened);
-}
 
 fillInputsUserData();
 
-document.addEventListener('keydown', handleKey);
 editProfileBtn.addEventListener('click', openProfileEditPopup);
 addCardBtn.addEventListener('click', () => openPopup(popupAddCard));
 formProfileEdit.addEventListener('submit', formProfileEditHandler);
