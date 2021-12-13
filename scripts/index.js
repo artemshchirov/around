@@ -15,6 +15,7 @@ const cards = document.querySelector('.cards');
 const cardTemplate = document.querySelector('#card').content;
 const popupCardFullscreen = document.querySelector('.popup_card-fullscreen');
 const popupCloseBtns = Array.from(document.querySelectorAll('.button_popup_close'));
+const popupOverlays = Array.from(document.querySelectorAll('.popup__overlay'));
 const initialCards = [
     {
         name: 'Мордор',
@@ -109,8 +110,11 @@ const createCard = card => {
     return cardElem;
 }
 
+fillInputsUserData();
+
 initialCards.forEach(card => cards.prepend(createCard(card)));
 popupCloseBtns.forEach(btn => btn.addEventListener('click', evt => closePopup(evt.target.closest('.popup_opened'))));
+popupOverlays.forEach(overlay => overlay.addEventListener('click', evt => closePopup(evt.target.closest('.popup_opened'))));
 editProfileBtn.addEventListener('click', openProfileEditPopup);
 addCardBtn.addEventListener('click', () => openPopup(popupAddCard));
 formProfileEdit.addEventListener('submit', formProfileEditHandler);

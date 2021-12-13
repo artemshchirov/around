@@ -56,6 +56,7 @@
             </p>
         </footer>
         <div class="popup popup-profile-edit">
+            <div class="popup__overlay"></div>
             <div class="popup__container">
                 <button class="button button_popup_close" type="button"></button>
                 <form class="form" name="profile-edit_form">
@@ -63,12 +64,12 @@
                         <legend class="form__title">
                             Редактировать профиль
                         </legend>
-                        <input class="form__input" name="name-edit_input" id="name-edit" type="text"
-                            placeholder="Имя" minlength="2" maxlength="40" required />
-                        <span class="form__input-error name-edit-error"></span>
-                            <input class="form__input" name="about-edit_input" id="about-edit" type="text"
+                        <input class="form__input" name="name-edit_input" id="name-edit" type="text" placeholder="Имя"
+                            minlength="2" maxlength="40" required />
+                        <span id="name-edit-error" class="form__input-error"></span>
+                        <input class="form__input" name="about-edit_input" id="about-edit" type="text"
                             placeholder="Профессия" minlength="2" maxlength="200" required />
-                        <span class="form__input-error about-edit-error"></span>
+                        <span id="about-edit-error" class="form__input-error"></span>
                         <button class="button button_form_submit" type="submit">
                             Сохранить
                         </button>
@@ -77,6 +78,7 @@
             </div>
         </div>
         <div class="popup popup_card-add">
+            <div class="popup__overlay"></div>
             <div class="popup__container">
                 <button class="button button_popup_close" type="button"></button>
                 <form class="form" name="add-card_form">
@@ -86,10 +88,10 @@
                         </legend>
                         <input class="form__input" name="name-card_input" id="name-card" type="text"
                             placeholder="Название" minlength="2" maxlength="30" required />
-                        <span class="form__input-error name-card-error"></span>
+                        <span id="name-card-error" class="form__input-error"></span>
                         <input class="form__input" name="link-card_input" id="link-card"
                             placeholder="Ссылка на картинку" type="url" required />
-                        <span class="form__input-error link-card-error"></span>
+                        <span id="link-card-error" class="form__input-error"></span>
                         <button class="button button_form_submit" type="submit">
                             Создать
                         </button>

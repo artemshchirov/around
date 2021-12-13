@@ -2,7 +2,6 @@
     background-color: #fff;
     color: #000;
     border: 1px solid #000;
-    cursor: default;
     opacity: 0.2;
-    transition: opacity 0s;
+    pointer-events: none;
 }
