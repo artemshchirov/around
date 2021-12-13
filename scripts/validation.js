@@ -7,7 +7,7 @@ const validationObj = {
     errorClass: 'form__input-error_visible'
 }
 
-const showInputError = (formElem, inputElem, errorMessageText, errorMessageClass, inputErrorClass ) => {
+const showInputError = (formElem, inputElem, errorMessageText, errorMessageClass, inputErrorClass) => {
     const errorElem = formElem.querySelector(`#${inputElem.id}-error`);
     errorElem.textContent = errorMessageText;
     errorElem.classList.add(errorMessageClass);
@@ -41,12 +41,8 @@ const toggleButtonState = (inputList, buttonElement, inactiveButtonClass) => {
 const setEventListeners = (formElem, { inputSelector, submitButtonSelector, inactiveButtonClass, ...rest }) => {
     const inputList = Array.from(formElem.querySelectorAll(inputSelector));
     const buttonElem = formElem.querySelector(submitButtonSelector);
-
-    inputList.forEach(elem => {console.log('33', elem, elem.value)})
-
     toggleButtonState(inputList, buttonElem, inactiveButtonClass);
-
-    inputList.forEach(inputElem => {    
+    inputList.forEach(inputElem => {
         inputElem.addEventListener('input', () => {
             checkInputValidity(formElem, inputElem, rest);
             toggleButtonState(inputList, buttonElem, inactiveButtonClass);

@@ -16,6 +16,7 @@ const cardTemplate = document.querySelector('#card').content;
 const popupCardFullscreen = document.querySelector('.popup_card-fullscreen');
 const popupCloseBtns = Array.from(document.querySelectorAll('.button_popup_close'));
 const popupOverlays = Array.from(document.querySelectorAll('.popup__overlay'));
+const popups = Array.from(document.querySelectorAll('.popup'));
 const initialCards = [
     {
         name: 'Мордор',
@@ -87,11 +88,12 @@ const changeLikeStatus = item => {
     };
 }
 const deleteCard = evt => {
-    evt.remove();
+    evt.target.closest('.card').remove();
 }
 const openCardFullscreen = evt => {
-    popupCardFullscreen.querySelector('.popup__image').src = evt.querySelector('.card__image').src;
-    popupCardFullscreen.querySelector('.popup__image').alt = evt.querySelector('.card__image').alt;
+    eventCard = evt.target.closest('.card');
+    popupCardFullscreen.querySelector('.popup__image').src = eventCard.querySelector('.card__image').src;
+    popupCardFullscreen.querySelector('.popup__image').alt = eventCard.querySelector('.card__image').alt;
     popupCardFullscreen.querySelector('.popup__title').textContent = evt.textContent;
     openPopup(popupCardFullscreen);
 }
@@ -104,18 +106,23 @@ const createCard = card => {
     cardTitle.textContent = card.name;
     cardImage.src = card.link;
     cardImage.alt = `Картинка пользователя: ${cardElem.textContent.trim()}`;
-    cardImage.addEventListener('click', evt => openCardFullscreen(evt.target.closest('.card')));
-    deleteBtn.addEventListener('click', evt => deleteCard(evt.target.closest('.card')));
+    cardImage.addEventListener('click', openCardFullscreen);
+    deleteBtn.addEventListener('click', deleteCard);
     likeBtn.addEventListener('click', () => changeLikeStatus(likeBtn));
     return cardElem;
+}
+const handleKey = evt => {
+    const popupOpened = document.querySelector('.popup_opened');
+    if (popupOpened && evt.key === "Escape") closePopup(popupOpened);
 }
 
 fillInputsUserData();
 
-initialCards.forEach(card => cards.prepend(createCard(card)));
-popupCloseBtns.forEach(btn => btn.addEventListener('click', evt => closePopup(evt.target.closest('.popup_opened'))));
-popupOverlays.forEach(overlay => overlay.addEventListener('click', evt => closePopup(evt.target.closest('.popup_opened'))));
+document.addEventListener('keydown', handleKey);
 editProfileBtn.addEventListener('click', openProfileEditPopup);
 addCardBtn.addEventListener('click', () => openPopup(popupAddCard));
 formProfileEdit.addEventListener('submit', formProfileEditHandler);
 formAddCard.addEventListener('submit', formAddCardHandler);
+initialCards.forEach(card => cards.prepend(createCard(card)));
+popupCloseBtns.forEach(btn => btn.addEventListener('click', evt => closePopup(evt.target.closest('.popup_opened'))));
+popupOverlays.forEach(overlay => overlay.addEventListener('click', evt => closePopup(evt.target.closest('.popup_opened'))));
