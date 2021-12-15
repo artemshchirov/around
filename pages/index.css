@@ -19,6 +19,7 @@
 @import url(../blocks/button/_profile/button_profile_edit.css);
 @import url(../blocks/button/_profile/button_profile_add.css);
 @import url(../blocks/button/_like/button_like.css);
+@import url(../blocks/button/_like/button_like_isLiked.css);
 @import url(../blocks/button/_popup/button_popup_close.css);
 @import url(../blocks/button/_form/button_form_submit.css);
 @import url(../blocks/button/_card/button_card_delete.css);
