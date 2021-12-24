@@ -1,4 +1,4 @@
-const validationObj = {
+export const validationObj = {
   formSelector: '.form',
   inputSelector: '.form__input',
   submitButtonSelector: '.button_form_submit',
@@ -29,7 +29,7 @@ const checkInputValidity = (formElem, inputElem, { inputErrorClass, errorClass }
 const hasInvalidInput = inputList => {
   return inputList.some(inputElem => !inputElem.validity.valid);
 }
-const disableButton = (button, inactiveButtonClass) => {
+export const disableButton = (button, inactiveButtonClass) => {
   button.disabled = true;
   button.classList.add(inactiveButtonClass);
 }
