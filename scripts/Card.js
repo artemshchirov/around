@@ -19,27 +19,30 @@ export class Card {
   }
   generateCard() {
     this._element = this._getTemplate();
+    this._cardImage = this._element.querySelector('.card__image');
+    this._buttonLike = this._element.querySelector('.button_like');
     this._setEventListeners();
-    this._element.querySelector(".card__title").textContent = this._title;
-    this._element.querySelector(".card__image").src = this._image;
-    this._element.querySelector(".card__image").alt = this._alt;
+    this._element.querySelector('.card__title').textContent = this._title;
+    this._cardImage.src = this._image;
+    this._cardImage.alt = this._alt;
     return this._element;
   }
   _setEventListeners() {
-    this._element.querySelector('.card__image').addEventListener('click', () => this._handleOpenCardFullscreen());
-    this._element.querySelector('.button_like').addEventListener('click', () => this._handleChangeLikeStatus());
+    this._cardImage.addEventListener('click', () => this._handleOpenCardFullscreen());
+    this._buttonLike.addEventListener('click', () => this._handleChangeLikeStatus());
     this._element.querySelector('.button_card_delete').addEventListener('click', () => this._handleDeleteCard());
   }
   _handleChangeLikeStatus() {
-    this._element.querySelector('.button_like').classList.toggle('button_like_isLiked');
+    this._buttonLike.classList.toggle('button_like_isLiked');
   }
   _handleDeleteCard() {
     this._element.remove();
   }
   _handleOpenCardFullscreen() {
+    this._popupImage = popupFullscreen.querySelector('.popup__image');
+    this._popupImage.src = this._image;
+    this._popupImage.alt = this._alt;
     popupFullscreen.querySelector('.popup__title').textContent = this._title;
-    popupFullscreen.querySelector('.popup__image').src = this._image;
-    popupFullscreen.querySelector('.popup__image').alt = this._alt;
     popupFullscreen.classList.add("popup_opened");
     document.addEventListener("keydown", handleKey);
   }
