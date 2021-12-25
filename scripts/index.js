@@ -1,7 +1,7 @@
 import { Card } from "./Card.js";
 import { FormValidator } from "./FormValidator.js";
-import { 
-  editProfileBtn, 
+import {
+  editProfileBtn,
   popupProfileEdit,
   formProfileEdit,
   username,
@@ -19,7 +19,8 @@ import {
   popupOverlays,
   initialCards,
   validationForms,
-  validationObj } from "./constants.js";
+  validationObj
+} from "./constants.js";
 
 export const handleKey = (evt) => {
   const popupOpened = document.querySelector(".popup_opened");
