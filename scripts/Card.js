@@ -1,5 +1,5 @@
-const popupFullscreen = document.querySelector('.popup_card-fullscreen')
-
+import { popupFullscreen } from "./constants.js";
+import { handleKey } from "./index.js";
 
 export class Card {
   constructor(data, cardSelector) {
@@ -41,5 +41,6 @@ export class Card {
     popupFullscreen.querySelector('.popup__image').src = this._image;
     popupFullscreen.querySelector('.popup__image').alt = this._alt;
     popupFullscreen.classList.add("popup_opened");
+    document.addEventListener("keydown", handleKey);
   }
 }
