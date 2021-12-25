@@ -22,15 +22,15 @@ import {
   validationObj
 } from "./constants.js";
 
-export const handleKey = (evt) => {
+export const handleKey = evt => {
   const popupOpened = document.querySelector(".popup_opened");
   if (popupOpened && evt.key === "Escape") closePopup(popupOpened);
 };
-const openPopup = (popup) => {
+const openPopup = popup => {
   document.addEventListener("keydown", handleKey);
   popup.classList.add("popup_opened");
 };
-const closePopup = (popup) => {
+const closePopup = popup => {
   document.removeEventListener("keydown", handleKey);
   popup.classList.remove("popup_opened");
 };
@@ -75,16 +75,14 @@ editProfileBtn.addEventListener("click", openProfileEditPopup);
 addCardBtn.addEventListener("click", () => openPopup(popupAddCard));
 formProfileEdit.addEventListener("submit", formProfileEditHandler);
 formAddCard.addEventListener("submit", formAddCardHandler);
-initialCards.forEach((obj) => addCard(obj, 'card'));
-popupCloseBtns.forEach((btn) =>
-  btn.addEventListener("click", (evt) =>
-    closePopup(evt.target.closest(".popup_opened"))
-  )
+initialCards.forEach(obj => addCard(obj, 'card'));
+popupCloseBtns.forEach(btn =>
+  btn.addEventListener("click", evt => 
+    closePopup(evt.target.closest(".popup_opened")))
 );
-popupOverlays.forEach((overlay) =>
-  overlay.addEventListener("click", (evt) =>
-    closePopup(evt.target.closest(".popup_opened"))
-  )
+popupOverlays.forEach(overlay => 
+  overlay.addEventListener("click", evt => 
+  closePopup(evt.target.closest(".popup_opened")))
 );
 validationForms.forEach(formElem => {
   const form = new FormValidator(validationObj, formElem);
