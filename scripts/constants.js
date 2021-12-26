@@ -1,5 +1,3 @@
-import { FormValidator } from "./FormValidator.js";
-
 export const editProfileBtn = document.querySelector(".button_profile_edit");
 export const popupProfileEdit = document.querySelector(".popup-profile-edit");
 export const formProfileEdit = popupProfileEdit.querySelector(".form");
@@ -26,8 +24,6 @@ export const validationObj = {
     inputErrorClass: 'form__input_type_error',
     errorClass: 'form__input-error_visible'
 }
-export const formProfileEditValid = new FormValidator(validationObj, formProfileEdit);
-export const formAddCardValid = new FormValidator(validationObj, formAddCard);
 export const initialCards = [
     {
         name: "Мордор",

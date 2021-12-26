@@ -1,6 +1,7 @@
 import { popupFullscreen } from "./constants.js";
 import { openPopup } from "./util.js";
 
+
 export class Card {
   constructor(data, cardSelector) {
     this._title = data.name;
@@ -21,7 +22,7 @@ export class Card {
   generateCard() {
     this._element = this._getTemplate();
     this._cardImage = this._element.querySelector('.card__image');
-    this._buttonLike = this._element.querySelector('.button_like'); //? здесь или в constructor?
+    this._buttonLike = this._element.querySelector('.button_like');  //* happy new year
     this._setEventListeners();
     this._element.querySelector('.card__title').textContent = this._title;
     this._cardImage.src = this._image;
