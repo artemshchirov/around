@@ -2,8 +2,8 @@ import {
   editProfileBtn,
   cards,
   formProfileEdit,
-  username,
-  about,
+  // username,
+  // about,
   usernameInput,
   aboutInput,
   formAddCard,
@@ -16,7 +16,17 @@ import {
 import Card from "../components/Card.js";
 import FormValidator from "../components/FormValidator.js";
 import Popup from "../components/Popup.js";
+import PopupWithForm from "../components/PopupWithForm.js";
+import UserInfo from "../components/UserInfo.js";
 
+const popupEditProfile = new PopupWithForm(formProfileEditHandler, '.popup-profile-edit');
+const popupAddCard = new PopupWithForm(formAddCardHandler, '.popup_card-add');
+
+// const username = profile.querySelector(".profile__name");
+// const about = profile.querySelector(".profile__about");
+
+const userInfo = new UserInfo({nameSelector: '.profile__name', aboutSelector: '.profile__about'});
+userInfo.setUserInfo({username:'Artem', about:'Seee'});
 
 const fillInputsUserData = () => {
   usernameInput.value = username.textContent.trim();
@@ -25,7 +35,13 @@ const fillInputsUserData = () => {
 
 const openProfileEditPopup = () => {
   fillInputsUserData();
-  new Popup('.popup-profile-edit').open();
+  popupEditProfile.open();
+  popupEditProfile.setEventListeners();
+};
+
+function formProfileEditHandler() {
+  updateProfile();
+  popupEditProfile.close();
 };
 
 const updateProfile = () => {
@@ -33,19 +49,14 @@ const updateProfile = () => {
   about.textContent = aboutInput.value;
 };
 
-const formProfileEditHandler = () => {
-  updateProfile();
-  new Popup('.popup-profile-edit').close();
-};
-
-const formAddCardHandler = () => {
+function formAddCardHandler() {
   const newCardObj = {
     name: newCardNameInput.value,
     link: newCardLinkInput.value,
     alt: `Картинка пользователя: "${newCardNameInput.value}"`,
   };
   addCard(newCardObj, 'card');
-  new Popup('.popup_card-add').close()
+  popupAddCard.close()
   formAddCard.reset();
   formAddCardValid.disableButton();
 };
@@ -64,8 +75,11 @@ formAddCardValid.enableValidation();
 
 
 editProfileBtn.addEventListener("click", openProfileEditPopup);
-addCardBtn.addEventListener("click", () => new Popup('.popup_card-add').open());
+addCardBtn.addEventListener("click", () => {
+  popupAddCard.open();
+  popupAddCard.setEventListeners();
+});
 
-formProfileEdit.addEventListener("submit", formProfileEditHandler);
-formAddCard.addEventListener("submit", formAddCardHandler);
+// formProfileEdit.addEventListener("submit", formProfileEditHandler);
+// formAddCard.addEventListener("submit", formAddCardHandler);
 initialCards.forEach(cardObj => addCard(cardObj, 'card'));

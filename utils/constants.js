@@ -1,13 +1,13 @@
 export const editProfileBtn = document.querySelector(".button_profile_edit");
-export const popupProfileEdit = document.querySelector(".popup-profile-edit");
-export const formProfileEdit = popupProfileEdit.querySelector(".form");
+
+export const formProfileEdit = document.querySelector(".popup-profile-edit").querySelector(".form"); // TODO: Декомпозиция поисков
 export const profile = document.querySelector(".profile");
-export const username = profile.querySelector(".profile__name");
-export const about = profile.querySelector(".profile__about");
+// export const username = profile.querySelector(".profile__name");
+// export const about = profile.querySelector(".profile__about");
 export const usernameInput = document.getElementById("name-edit");
 export const aboutInput = document.getElementById("about-edit");
-export const popupAddCard = document.querySelector(".popup_card-add");
-export const formAddCard = popupAddCard.querySelector(".form");
+
+export const formAddCard = document.querySelector(".popup_card-add").querySelector(".form");
 export const createCardButton = formAddCard.querySelector(".button_form_submit");
 export const addCardBtn = document.querySelector(".button_profile_add");
 export const newCardNameInput = document.getElementById("name-card");
