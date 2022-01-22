@@ -16,10 +16,10 @@ import {
   popupOverlays,
   initialCards,
   validationObj,
-} from "./constants.js";
-import { openPopup, closePopup } from "./util.js";
-import { Card } from "./Card.js";
-import { FormValidator } from "./FormValidator.js";
+} from "../utils/constants.js";
+import { openPopup, closePopup } from "../utils/util.js";
+import { Card } from "../components/Card.js";
+import { FormValidator } from "../components/FormValidator.js";
 
 
 const fillInputsUserData = () => {

@@ -1,12 +1,12 @@
-import { popupFullscreen } from "./constants.js";
-import { openPopup } from "./util.js";
+import { popupFullscreen } from "../utils/constants.js";
+import { openPopup } from "../utils/util.js";
 
 
-export class Card {
-  constructor(data, cardSelector) {
-    this._title = data.name;
-    this._image = data.link;
-    this._alt = data.alt;
+export default class Card {
+  constructor({name, link, alt}, cardSelector) {
+    this._title = name;
+    this._image = link;
+    this._alt = alt;
     this._cardSelector = cardSelector;
   }
 
@@ -22,7 +22,7 @@ export class Card {
   generateCard() {
     this._element = this._getTemplate();
     this._cardImage = this._element.querySelector('.card__image');
-    this._buttonLike = this._element.querySelector('.button_like');  //* happy new year
+    this._buttonLike = this._element.querySelector('.button_like');
     this._setEventListeners();
     this._element.querySelector('.card__title').textContent = this._title;
     this._cardImage.src = this._image;
