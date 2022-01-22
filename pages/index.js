@@ -1,25 +1,21 @@
 import {
   editProfileBtn,
   cards,
-  popupProfileEdit,
   formProfileEdit,
   username,
   about,
   usernameInput,
   aboutInput,
-  popupAddCard,
   formAddCard,
   addCardBtn,
   newCardNameInput,
   newCardLinkInput,
-  popupCloseBtns,
-  popupOverlays,
   initialCards,
   validationObj,
 } from "../utils/constants.js";
-import { openPopup, closePopup } from "../utils/util.js";
-import { Card } from "../components/Card.js";
-import { FormValidator } from "../components/FormValidator.js";
+import Card from "../components/Card.js";
+import FormValidator from "../components/FormValidator.js";
+import Popup from "../components/Popup.js";
 
 
 const fillInputsUserData = () => {
@@ -29,7 +25,7 @@ const fillInputsUserData = () => {
 
 const openProfileEditPopup = () => {
   fillInputsUserData();
-  openPopup(popupProfileEdit);
+  new Popup('.popup-profile-edit').open();
 };
 
 const updateProfile = () => {
@@ -39,7 +35,7 @@ const updateProfile = () => {
 
 const formProfileEditHandler = () => {
   updateProfile();
-  closePopup(popupProfileEdit);
+  new Popup('.popup-profile-edit').close();
 };
 
 const formAddCardHandler = () => {
@@ -49,7 +45,7 @@ const formAddCardHandler = () => {
     alt: `Картинка пользователя: "${newCardNameInput.value}"`,
   };
   addCard(newCardObj, 'card');
-  closePopup(popupAddCard);
+  new Popup('.popup_card-add').close()
   formAddCard.reset();
   formAddCardValid.disableButton();
 };
@@ -68,15 +64,8 @@ formAddCardValid.enableValidation();
 
 
 editProfileBtn.addEventListener("click", openProfileEditPopup);
-addCardBtn.addEventListener("click", () => openPopup(popupAddCard));
+addCardBtn.addEventListener("click", () => new Popup('.popup_card-add').open());
+
 formProfileEdit.addEventListener("submit", formProfileEditHandler);
 formAddCard.addEventListener("submit", formAddCardHandler);
 initialCards.forEach(cardObj => addCard(cardObj, 'card'));
-popupCloseBtns.forEach(btn =>
-  btn.addEventListener("click", evt =>
-    closePopup(evt.target.closest(".popup_opened")))
-);
-popupOverlays.forEach(overlay =>
-  overlay.addEventListener("click", evt =>
-    closePopup(evt.target.closest(".popup_opened")))
-);
