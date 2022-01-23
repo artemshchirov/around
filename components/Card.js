@@ -11,7 +11,7 @@ export default class Card {
    * @param  {string} cardSelector
    * @param  {func} handleCardClick - callback for opening popup with image if clicking on card
    */
-  constructor({ name, src, alt }, cardSelector, handleCardClick) {
+  constructor({ name, src, alt }, cardSelector, { handleCardClick }) {
     this._title = name;
     this._image = src;
     this._alt = alt;
@@ -40,8 +40,7 @@ export default class Card {
   }
 
   _setEventListeners() {
-    this._imageData = { name: this._title, src: this._image, alt: this._alt }
-    this._cardImage.addEventListener('click', () => this._handleCardClick(this._imageData));
+    this._cardImage.addEventListener('click', () => this._handleCardClick());
     this._buttonLike.addEventListener('click', () => this._handleChangeLikeStatus());
     this._element.querySelector('.button_card_delete').addEventListener('click', () => this._handleDeleteCard());
   }

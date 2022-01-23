@@ -1,3 +1,8 @@
+import Card from "../components/Card.js";
+import UserInfo from "../components/UserInfo.js";
+import PopupWithForm from "../components/PopupWithForm.js";
+import PopupWithImage from '../components/PopupWithImage.js'
+import FormValidator from "../components/FormValidator.js";
 import {
   editProfileBtn,
   cards,
@@ -11,16 +16,37 @@ import {
   initialCards,
   validationObj,
 } from "../utils/constants.js";
-import Card from "../components/Card.js";
-import FormValidator from "../components/FormValidator.js";
-// import Popup from "../components/Popup.js";
-import PopupWithImage from '../components/PopupWithImage.js'
-import PopupWithForm from "../components/PopupWithForm.js";
-import UserInfo from "../components/UserInfo.js";
 
-const popupEditProfile = new PopupWithForm(formProfileEditHandler, '.popup-profile-edit');
-const popupAddCard = new PopupWithForm(formAddCardHandler, '.popup_card-add');
-const userInfo = new UserInfo({ nameSelector: '.profile__name', aboutSelector: '.profile__about' });
+
+
+const popupEditProfile = new PopupWithForm({
+  handleFormSubmit: () => {
+    userInfo.setUserInfo({
+      username: usernameInput.value,
+      about: aboutInput.value
+    })
+    popupEditProfile.close();
+  }
+}, '.popup-profile-edit');
+
+const popupAddCard = new PopupWithForm({
+  handleFormSubmit: () => {
+    const newCardObj = {
+      name: newCardNameInput.value,
+      src: newCardLinkInput.value,
+      alt: `Картинка пользователя: "${newCardNameInput.value}"`,
+    };
+    addCard(newCardObj, 'card', handleCardClick);
+    popupAddCard.close()
+    formAddCard.reset();
+    formAddCardValid.disableButton();
+  },
+}, '.popup_card-add');
+
+const userInfo = new UserInfo({
+  nameSelector: '.profile__name',
+  aboutSelector: '.profile__about'
+});
 
 
 const fillInputsUserData = () => {
@@ -31,58 +57,35 @@ const fillInputsUserData = () => {
 
 const openProfileEditPopup = () => {
   fillInputsUserData();
-  popupEditProfile.open();
   popupEditProfile.setEventListeners();
+  popupEditProfile.open();
 };
 
-function formProfileEditHandler() {
-  userInfo.setUserInfo({ username: usernameInput.value, about: aboutInput.value })
-  // updateProfile();
-  popupEditProfile.close();
-};
-
-// const updateProfile = () => {
-//   username.textContent = usernameInput.value;
-//   about.textContent = aboutInput.value;
-// };
-
-function handleCardClick(cardObj) {
-  const popupImage = new PopupWithImage(cardObj, '.popup_card-fullscreen');
-  popupImage.setEventListeners();
-  popupImage.open();
+const openAddCardPopup = () => {
+  popupAddCard.setEventListeners();
+  popupAddCard.open();
 }
 
-function formAddCardHandler() {
-  const newCardObj = {
-    name: newCardNameInput.value,
-    src: newCardLinkInput.value,
-    alt: `Картинка пользователя: "${newCardNameInput.value}"`,
-  };
-  addCard(newCardObj, 'card', handleCardClick);
-  popupAddCard.close()
-  formAddCard.reset();
-  formAddCardValid.disableButton();
-};
-
-const addCard = (dataCardObj, selector) => {
-  const card = new Card(dataCardObj, selector, handleCardClick);
+const addCard = (cardObj, selector) => {
+  const card = new Card(cardObj, selector, {
+    handleCardClick: () => {
+      const popupImage = new PopupWithImage(cardObj, '.popup_card-fullscreen');
+      popupImage.setEventListeners();
+      popupImage.open();
+    }
+  });
   const cardElement = card.generateCard();
   cards.prepend(cardElement);
 }
 
+popupEditProfile._getInputValues();
 
 const formProfileEditValid = new FormValidator(validationObj, formProfileEdit);
 const formAddCardValid = new FormValidator(validationObj, formAddCard);
 formProfileEditValid.enableValidation();
 formAddCardValid.enableValidation();
 
-
 editProfileBtn.addEventListener("click", openProfileEditPopup);
-addCardBtn.addEventListener("click", () => {
-  popupAddCard.open();
-  popupAddCard.setEventListeners();
-});
+addCardBtn.addEventListener("click", openAddCardPopup);
 
-// formProfileEdit.addEventListener("submit", formProfileEditHandler);
-// formAddCard.addEventListener("submit", formAddCardHandler);
 initialCards.forEach(cardObj => addCard(cardObj, 'card'));
