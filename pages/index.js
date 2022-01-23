@@ -2,8 +2,6 @@ import {
   editProfileBtn,
   cards,
   formProfileEdit,
-  // username,
-  // about,
   usernameInput,
   aboutInput,
   formAddCard,
@@ -15,22 +13,20 @@ import {
 } from "../utils/constants.js";
 import Card from "../components/Card.js";
 import FormValidator from "../components/FormValidator.js";
-import Popup from "../components/Popup.js";
+// import Popup from "../components/Popup.js";
+import PopupWithImage from '../components/PopupWithImage.js'
 import PopupWithForm from "../components/PopupWithForm.js";
 import UserInfo from "../components/UserInfo.js";
 
 const popupEditProfile = new PopupWithForm(formProfileEditHandler, '.popup-profile-edit');
 const popupAddCard = new PopupWithForm(formAddCardHandler, '.popup_card-add');
+const userInfo = new UserInfo({ nameSelector: '.profile__name', aboutSelector: '.profile__about' });
 
-// const username = profile.querySelector(".profile__name");
-// const about = profile.querySelector(".profile__about");
-
-const userInfo = new UserInfo({nameSelector: '.profile__name', aboutSelector: '.profile__about'});
-userInfo.setUserInfo({username:'Artem', about:'Seee'});
 
 const fillInputsUserData = () => {
-  usernameInput.value = username.textContent.trim();
-  aboutInput.value = about.textContent.trim();
+  const { username, about } = userInfo.getUserInfo();
+  usernameInput.value = username;
+  aboutInput.value = about;
 };
 
 const openProfileEditPopup = () => {
@@ -40,29 +36,36 @@ const openProfileEditPopup = () => {
 };
 
 function formProfileEditHandler() {
-  updateProfile();
+  userInfo.setUserInfo({ username: usernameInput.value, about: aboutInput.value })
+  // updateProfile();
   popupEditProfile.close();
 };
 
-const updateProfile = () => {
-  username.textContent = usernameInput.value;
-  about.textContent = aboutInput.value;
-};
+// const updateProfile = () => {
+//   username.textContent = usernameInput.value;
+//   about.textContent = aboutInput.value;
+// };
+
+function handleCardClick(cardObj) {
+  const popupImage = new PopupWithImage(cardObj, '.popup_card-fullscreen');
+  popupImage.setEventListeners();
+  popupImage.open();
+}
 
 function formAddCardHandler() {
   const newCardObj = {
     name: newCardNameInput.value,
-    link: newCardLinkInput.value,
+    src: newCardLinkInput.value,
     alt: `Картинка пользователя: "${newCardNameInput.value}"`,
   };
-  addCard(newCardObj, 'card');
+  addCard(newCardObj, 'card', handleCardClick);
   popupAddCard.close()
   formAddCard.reset();
   formAddCardValid.disableButton();
 };
 
 const addCard = (dataCardObj, selector) => {
-  const card = new Card(dataCardObj, selector);
+  const card = new Card(dataCardObj, selector, handleCardClick);
   const cardElement = card.generateCard();
   cards.prepend(cardElement);
 }

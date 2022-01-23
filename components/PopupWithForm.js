@@ -6,11 +6,11 @@ export default class PopupWithForm extends Popup {
    * @param  {func} submitForm - callback function for form submiting
    * @param  {string} popupSelector
    */
-  constructor(handleSubmit, popupSelector) {
+  constructor(handleFormSubmit, popupSelector) {
     super(popupSelector);
     this._element = document.querySelector(this._popupSelector);
     this._form = this._element.querySelector('.form');
-    this._handleFormSubmit = handleSubmit;
+    this._handleFormSubmit = handleFormSubmit;
   }
   /**
    * Collect data from all form fields

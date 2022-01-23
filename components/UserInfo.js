@@ -16,8 +16,8 @@ export default class UserInfo {
    * @return {object} userData - user info: {name, about}.
    */
   getUserInfo() {
-    console.log('UserInfo.getUserInfo()', { name: this._name.textContent, about: this._about.textContent });
-    return { username: this._name.textContent, about: this._about.textContent };
+    console.log('UserInfo.getUserInfo()', { name: this._name.textContent.trim(), about: this._about.textContent.trim() });
+    return { username: this._name.textContent.trim(), about: this._about.textContent.trim() };
   }
 
   /**
@@ -25,7 +25,7 @@ export default class UserInfo {
    */
   setUserInfo({ username, about }) {
     console.log('UserInfo.setUserInfo()', 'username:', username, 'about:', about);
-    this._name.textContent = username;
-    this._about.textContent = about;
+    this._name.textContent = username.trim();
+    this._about.textContent = about.trim();
   }
 }
