@@ -1,6 +1,3 @@
-import { popupFullscreen } from "../utils/constants.js";
-// import { openPopup } from "../utils/util.js";
-
 export default class Card {
   /**
    * Create card and add card to the page

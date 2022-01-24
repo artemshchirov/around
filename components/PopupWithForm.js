@@ -6,7 +6,7 @@ export default class PopupWithForm extends Popup {
    * @param  {func} submitForm - callback function for form submiting
    * @param  {string} popupSelector
    */
-  constructor({ handleFormSubmit }, popupSelector) {
+  constructor({ popupSelector, handleFormSubmit }) {
     super(popupSelector);
     this._handleFormSubmit = handleFormSubmit;
     this._element = document.querySelector(this._popupSelector);
@@ -14,17 +14,15 @@ export default class PopupWithForm extends Popup {
   }
   /**
    * Collect data from all form fields
+   * @return {object} this._formValues - data collected from inputs
    */
-  _getInputValues() {
-    // console.log('PopupWithForm._getInputValues()');
-    let formsArray = Array.from(this._form.querySelectorAll('.form__input'));
-    let formsValue = formsArray.map(el => el.value);
-    let res = document.getElementById("name-edit");
-    console.log('1',res.value)
-    // console.log(formsArray)
-    // console.log('formsvalue: ', formsValue);
-    
-
+  _getInputValues() {    
+    this._inputList = this._element.querySelectorAll('.form__input');  // get all field elements in this._element    
+    this._formValues = {};
+    this._inputList.forEach(input => {  // add values of all fields to object
+      this._formValues[input.name] = input.value;
+    });
+    return this._formValues;
   }
 
   close() {
@@ -33,7 +31,12 @@ export default class PopupWithForm extends Popup {
   }
 
   setEventListeners() {
-    super.setEventListeners();
-    this._form.addEventListener('submit', this._handleFormSubmit);
+    super.setEventListeners();    
+    this._form.addEventListener('submit', this._handleForm);
   }
+
+  _handleForm = () => {  //  else evt listeners stuck on submit btn
+    this._handleFormSubmit(this._getInputValues());
+  }
+
 }
