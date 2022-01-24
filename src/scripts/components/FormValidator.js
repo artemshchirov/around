@@ -1,4 +1,11 @@
 export default class FormValidator {
+    /** 
+     * Sets up form field validation.
+     * 
+     * @constructor
+     * @param  {object} validationObj - Settings object with selectors and form classes.
+     * @param  {object} formElem - Element of the form being validated.
+     */
     constructor(validationObj, formElem) {
         this._settings = validationObj;
         this._form = formElem;
@@ -30,6 +37,9 @@ export default class FormValidator {
         }
     }
 
+    /**
+     * @returns {bool} true if all inputs filled correct else false
+     */
     _hasInvalidInput() {
         return this._inputs.some(input => !input.validity.valid);
     }
@@ -44,7 +54,12 @@ export default class FormValidator {
         this._button.classList.remove(this._inactiveButtonClass);
     }
 
+    /**
+     * @param  {object} input - input element that will be validated.
+     */
     _checkInputValidity(input) {
+        console.log('input: ', input);
+
         this._input = input;
         this._error = this._form.querySelector(`#${this._input.id}-error`);
         if (!this._input.validity.valid) {

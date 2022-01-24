@@ -11,18 +11,17 @@ import {
     aboutInput,
     formAddCard,
     addCardBtn,
-    newCardNameInput,
-    newCardLinkInput,
     initialCards,
     validationObj,
 } from "./scripts/utils/constants.js";
+import "./pages/index.css";
 
 
-const defaultCardList = new Section({
+const cardList = new Section({
     items: initialCards,
     renderer: item => {
-        const cardElement = createCard(item, 'card')
-        defaultCardList.addItem(cardElement);
+        const cardElement = createCard(item, 'card');
+        cardList.addItem(cardElement);
     }
 }, '.cards');
 
@@ -35,14 +34,14 @@ const popupAddCard = new PopupWithForm({
             alt: `Картинка пользоватля: ${formData['name-card_input']}`
         },
             'card'
-        );        
-        defaultCardList.addItem(newCardElement);
+        );
+        cardList.addItem(newCardElement);
         popupAddCard.close()
         formAddCardValid.disableButton();
     },
 });
 
-const createCard = (cardObj, selector) => {    
+const createCard = (cardObj, selector) => {
     const card = new Card(cardObj, selector, {
         handleCardClick: () => {
             const popupImage = new PopupWithImage(cardObj, '.popup_card-fullscreen');
@@ -87,8 +86,6 @@ const openAddCardPopup = () => {
     popupAddCard.open();
 }
 
-//!!!!!
-// popupEditProfile._getInputValues();
 
 const formProfileEditValid = new FormValidator(validationObj, formProfileEdit);
 const formAddCardValid = new FormValidator(validationObj, formAddCard);
@@ -98,4 +95,4 @@ formAddCardValid.enableValidation();
 editProfileBtn.addEventListener("click", openProfileEditPopup);
 addCardBtn.addEventListener("click", openAddCardPopup);
 
-defaultCardList.renderItems();
+cardList.renderItems();

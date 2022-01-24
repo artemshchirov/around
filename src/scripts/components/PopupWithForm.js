@@ -3,7 +3,7 @@ import Popup from './Popup.js';
 export default class PopupWithForm extends Popup {
   /**
    * @constructor
-   * @param  {func} submitForm - callback function for form submiting
+   * @param  {object} submitForm - callback function for form submiting
    * @param  {string} popupSelector
    */
   constructor({ popupSelector, handleFormSubmit }) {
@@ -16,7 +16,7 @@ export default class PopupWithForm extends Popup {
    * Collect data from all form fields
    * @return {object} this._formValues - data collected from inputs
    */
-  _getInputValues() {    
+  _getInputValues() {
     this._inputList = this._element.querySelectorAll('.form__input');  // get all field elements in this._element    
     this._formValues = {};
     this._inputList.forEach(input => {  // add values of all fields to object
@@ -31,11 +31,13 @@ export default class PopupWithForm extends Popup {
   }
 
   setEventListeners() {
-    super.setEventListeners();    
+    super.setEventListeners();
     this._form.addEventListener('submit', this._handleForm);
+    //? if "this._form.addEventListener('submit', () => this._handleFormSubmit(this._getInputValues());"
+    //? event listeners stuck on submit button... 
   }
 
-  _handleForm = () => {  //  else evt listeners stuck on submit btn
+  _handleForm = () => {
     this._handleFormSubmit(this._getInputValues());
   }
 

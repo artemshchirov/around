@@ -1,12 +1,13 @@
 export default class Card {
   /**
-   * Create card and add card to the page
+   * Create card and add card to the page.
    * 
-   * @param  {string} {name
-   * @param  {string} src
-   * @param  {string} alt}
-   * @param  {string} cardSelector
-   * @param  {func} handleCardClick - callback for opening popup with image if clicking on card
+   * @constructor
+   * @param  {string} {name - name for new card.
+   * @param  {string} src - source of new card.
+   * @param  {string} alt} - alt for new card.
+   * @param  {string} cardSelector - Selector for html template of card being created.
+   * @param  {func} handleCardClick - callback for opening popup with image if clicking on card.
    */
   constructor({ name, src, alt }, cardSelector, { handleCardClick }) {
     this._title = name;
@@ -16,6 +17,9 @@ export default class Card {
     this._handleCardClick = handleCardClick;
   }
 
+  /**
+   * @return {object} - Card element template html; 
+   */
   _getTemplate() {
     const cardElement = document
       .querySelector(`#${this._cardSelector}`)
@@ -25,6 +29,11 @@ export default class Card {
     return cardElement;
   }
 
+  /**
+   * Get card element template html and add him new parameters; 
+   * 
+   * @return {object} - Card object ready to be added to the page
+   */
   generateCard() {
     this._element = this._getTemplate();
     this._cardImage = this._element.querySelector('.card__image');
@@ -36,6 +45,9 @@ export default class Card {
     return this._element;
   }
 
+  /**
+   * Enable delete, like buttons and click on image for fullscreen
+   */
   _setEventListeners() {
     this._cardImage.addEventListener('click', () => this._handleCardClick());
     this._buttonLike.addEventListener('click', () => this._handleChangeLikeStatus());

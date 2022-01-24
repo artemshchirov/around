@@ -4,9 +4,8 @@ export default class Section {
    * It receives the markup via a callback function and inserts it into the container.
    * 
    * @constructor
-   * @this   {Section}
    * @param  {array} items - elements to be rendered.
-   * @param  {function} renderer - callback func for creating and drawing elements on page.
+   * @param  {object} renderer - callback function for creating and drawing elements on page.
    * @param  {string} containerSelector - html-container to put in items.
    */
   constructor({ items, renderer }, containerSelector) {
@@ -16,13 +15,13 @@ export default class Section {
   }
 
   /**
-   * @param  {string} element - markup to be added in container 
+   * @param  {object} element - element to be added in container = on the page
    */
   addItem(element) {
     this._container.prepend(element);
   }
 
-  /** Draw all elements on page by call-back. */
+  /** Draw all elements on page by callback func. */
   renderItems() {
     this._renderedItems.forEach(item => this._renderer(item));
   }
