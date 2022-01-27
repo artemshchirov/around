@@ -1,12 +1,12 @@
-import mordorImage from '../../images/mordor.jpg';
-import lotlorienImage from '../../images/lothlorien.jpg';
-import argonathImage from '../../images/lotr.jpg';
-import moriaImage from '../../images/moria.jpeg';
-import rivendellImage from '../../images/rivendell.jpg';
-import shireImage from '../../images/shire.jpg';
+import mordorImage from '../images/mordor.jpg';
+import lotlorienImage from '../images/lothlorien.jpg';
+import argonathImage from '../images/lotr.jpg';
+import moriaImage from '../images/moria.jpeg';
+import rivendellImage from '../images/rivendell.jpg';
+import shireImage from '../images/shire.jpg';
 
 export const formAddCard = document.querySelector(".popup_card-add").querySelector(".form");
-export const formProfileEdit = document.querySelector(".popup-profile-edit").querySelector(".form"); 
+export const formProfileEdit = document.querySelector(".popup-profile-edit").querySelector(".form");
 export const addCardBtn = document.querySelector(".button_profile_add");
 export const editProfileBtn = document.querySelector(".button_profile_edit");
 export const usernameInput = document.getElementById("name-edit");

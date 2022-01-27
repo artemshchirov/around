@@ -1,9 +1,10 @@
-import Card from "./scripts/components/Card.js";
-import Section from "./scripts/components/Section.js";
-import UserInfo from "./scripts/components/UserInfo.js";
-import PopupWithForm from "./scripts/components/PopupWithForm.js";
-import PopupWithImage from './scripts/components/PopupWithImage.js'
-import FormValidator from "./scripts/components/FormValidator.js";
+import "./index.css";
+import Card from "../components/Card.js";
+import Section from "../components/Section.js";
+import UserInfo from "../components/UserInfo.js";
+import PopupWithForm from "../components/PopupWithForm.js";
+import PopupWithImage from '../components/PopupWithImage.js'
+import FormValidator from "../components/FormValidator.js";
 import {
     editProfileBtn,
     formProfileEdit,
@@ -13,8 +14,7 @@ import {
     addCardBtn,
     initialCards,
     validationObj,
-} from "./scripts/utils/constants.js";
-import "./pages/index.css";
+} from "../utils/constants.js";
 
 
 const cardList = new Section({
@@ -37,17 +37,28 @@ const popupAddCard = new PopupWithForm({
         );
         cardList.addItem(newCardElement);
         popupAddCard.close()
-        formAddCardValid.disableButton();
     },
 });
+popupAddCard.setEventListeners();
+
+const popupEditProfile = new PopupWithForm({
+    popupSelector: '.popup-profile-edit',
+    handleFormSubmit: formData => {
+        userInfo.setUserInfo({
+            username: formData['name-edit_input'],
+            about: formData['about-edit_input']
+        })
+        popupEditProfile.close();
+    }
+});
+popupEditProfile.setEventListeners();
+
+const popupImage = new PopupWithImage('.popup_card-fullscreen');
+popupImage.setEventListeners();
 
 const createCard = (cardObj, selector) => {
     const card = new Card(cardObj, selector, {
-        handleCardClick: () => {
-            const popupImage = new PopupWithImage(cardObj, '.popup_card-fullscreen');
-            popupImage.setEventListeners();
-            popupImage.open();
-        }
+        handleCardClick: () => popupImage.open(cardObj)
     });
     return card.generateCard();
 }
@@ -55,17 +66,6 @@ const createCard = (cardObj, selector) => {
 const userInfo = new UserInfo({
     nameSelector: '.profile__name',
     aboutSelector: '.profile__about'
-});
-
-const popupEditProfile = new PopupWithForm({
-    popupSelector: '.popup-profile-edit',
-    handleFormSubmit: () => {
-        userInfo.setUserInfo({
-            username: usernameInput.value,
-            about: aboutInput.value
-        })
-        popupEditProfile.close();
-    }
 });
 
 
@@ -77,14 +77,14 @@ const fillInputsUserData = () => {
 
 const openProfileEditPopup = () => {
     fillInputsUserData();
-    popupEditProfile.setEventListeners();
+    formProfileEditValid.resetValidation()
     popupEditProfile.open();
 };
 
 const openAddCardPopup = () => {
-    popupAddCard.setEventListeners();
+    formAddCardValid.resetValidation()
     popupAddCard.open();
-}
+};
 
 
 const formProfileEditValid = new FormValidator(validationObj, formProfileEdit);
