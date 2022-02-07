@@ -68,6 +68,7 @@ const popupEditProfile = new PopupWithForm({
     popupEditProfile.close();
   }
 });
+
 popupEditProfile.setEventListeners();
 
 const popupImage = new PopupWithImage('.popup_card-fullscreen');
@@ -90,11 +91,11 @@ const userInfo = new UserInfo({
 });
 
 api.getUserInfo()
-  .then(res => {    
+  .then(({name, about, avatar}) => {    
     userInfo.setUserInfo({
-      name: res.name,
-      about: res.about,
-      avatar: res.avatar
+      name: name,
+      about: about,
+      avatar: avatar
     })
   })
   .catch(err => console.log('Ошибка при загрузке информации о пользователе: ', err));
@@ -115,6 +116,7 @@ const openAddCardPopup = () => {
   formAddCardValid.resetValidation()
   popupAddCard.open();
 };
+
 
 
 const formProfileEditValid = new FormValidator(validationObj, formProfileEdit);

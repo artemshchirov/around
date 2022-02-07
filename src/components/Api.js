@@ -18,16 +18,6 @@ export default class Api {
       .then(this._handleResponse)
   }
 
-  setUserInfo() {
-    return fetch(`${this._address}/users/me`, {
-      'method': 'PUTCH',
-      headers: {
-        authorization: this._token,
-      }
-    })
-      .then(this._handleResponse)
-  }
-
   getInitialCards() {
     return fetch(`${this._address}/cards`, {
       headers: {

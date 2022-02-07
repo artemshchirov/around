@@ -28,6 +28,6 @@ export default class UserInfo {
   setUserInfo({ name, about, avatar }) {
     this._name.textContent = name.trim();
     this._about.textContent = about.trim();
-    this._avatar.src = avatar;
+    this._avatar.src = avatar || this._avatar.src;
   }
 }
