@@ -4,17 +4,18 @@ export default class Card {
    * 
    * @constructor
    * @param  {string} {name - name for new card.
-   * @param  {string} src - source of new card.
+   * @param  {string} link - source of new card.
    * @param  {string} alt} - alt for new card.
    * @param  {string} cardSelector - Selector for html template of card being created.
    * @param  {func} handleCardClick - callback for opening popup with image if clicking on card.
    */
-  constructor({ name, src, alt }, cardSelector, { handleCardClick }) {
+  constructor({ _id, name, link }, cardSelector, { handleCardClick, handleDeleteCard }) {
+    this._id = _id;
     this._title = name;
-    this._image = src;
-    this._alt = alt;
+    this._image = link;
     this._cardSelector = cardSelector;
     this._handleCardClick = handleCardClick;
+    this._handleDeleteCard = handleDeleteCard;
   }
 
   /**
@@ -58,7 +59,11 @@ export default class Card {
     this._buttonLike.classList.toggle('button_like_isLiked');
   }
 
-  _handleDeleteCard() {
+  getId() {
+    return this._id;
+  }
+
+  deleteCard() { 
     this._element.remove();
   }
 }

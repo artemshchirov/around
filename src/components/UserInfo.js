@@ -2,28 +2,32 @@ export default class UserInfo {
   /** Managing the display of user information on the page.
    * 
    * @constructor
-   * @param  {string} {nameSelector
-   * @param  {string} aboutSelector}
+   * @param  {string} {nameSelector  - selector for finding username on the page
+   * @param  {string} aboutSelector} - - selector for finding about info on the page
    */
-  constructor({ nameSelector, aboutSelector }) {
-    this._nameSelector = nameSelector;
-    this._aboutSelector = aboutSelector;
-    this._name = document.querySelector(this._nameSelector);
-    this._about = document.querySelector(this._aboutSelector);
+  constructor({ nameSelector, aboutSelector, avatarSelector}) {
+    this._name = document.querySelector(nameSelector);
+    this._about = document.querySelector(aboutSelector);
+    this._avatar = document.querySelector(avatarSelector);
   }
 
   /**
-   * @return {object} userData - user info: {name, about}.
+   * @return {object} - info about user {name, about}.
    */
   getUserInfo() {
-    return { username: this._name.textContent.trim(), about: this._about.textContent.trim() };
+    return { 
+      name: this._name.textContent.trim(), 
+      about: this._about.textContent.trim(), 
+      avatar: this._avatar.src
+    };
   }
 
   /**
    * Receive user data and add her on the page.
    */
-  setUserInfo({ username, about }) {
-    this._name.textContent = username.trim();
+  setUserInfo({ name, about, avatar }) {
+    this._name.textContent = name.trim();
     this._about.textContent = about.trim();
+    this._avatar.src = avatar;
   }
 }
