@@ -16,7 +16,6 @@ import {
   validationObj,
 } from "../utils/constants.js";
 
-
 const api = new Api({
   baseUrl: 'https://mesto.nomoreparties.co/v1/cohort-35',
   headers: {
@@ -24,14 +23,6 @@ const api = new Api({
     'Content-Type': 'application/json'
   }
 });
-
-api.getUserInfo()
-  .then(({ name, about, avatar }) => {
-    userInfo.setUserInfo({ name, about })
-    userInfo.setUserAvatar(avatar)
-  })
-  .catch(err => console.log('Ошибка при загрузке информации о пользователе: ', err));
-
 
 const cardList = new Section({
   renderer: item => {
@@ -53,46 +44,40 @@ const popupAddCard = new PopupWithForm({
       name: formData['name-card_input'],
       link: formData['link-card_input'],
     })
-      .then(newCard => {
-        const cardElement = createCard(newCard, 'card');
+      .then(newCardObj => {        
+        const cardElement = createCard(newCardObj, 'card');
         cardList.addItem(cardElement, true);
       })
-      .catch(err => console.log('Ошибка при создании новой карточки: ', err));
-
-    popupAddCard.close()
+      .catch(err => console.log(`Ошибка при создании новой карточки: ${err}`));
+    popupAddCard.close();
   },
 });
 popupAddCard.setEventListeners();
 
-// const popupEditProfile = new PopupWithForm({
-//   popupSelector: '.popup-profile-edit',
-//   handleFormSubmit: formData => {
-//     userInfo.setUserInfo({
-//       name: formData['name-edit_input'],
-//       about: formData['about-edit_input']
-//     })
-//     popupEditProfile.close();
-//   }
-// });
+api.getUserInfo()
+  .then(({ name, about, avatar }) => {
+    userInfo.setUserInfo({ name, about })
+    userInfo.setUserAvatar(avatar)
+  })
+  .catch(err => console.log(`Ошибка при загрузке информации о пользователе: ${err}`));
 
 const popupEditProfile = new PopupWithForm({
   popupSelector: '.popup-profile-edit',
-  handleFormSubmit: formData => {
+  handleFormSubmit: formValues => {
     api.setUserInfo({
-      name: formData['name-edit_input'],
-      about: formData['about-edit_input']
+      name: formValues['name-edit_input'],
+      about: formValues['about-edit_input']
     })
       .then(
         userInfo.setUserInfo({
-          name: formData['name-edit_input'],
-          about: formData['about-edit_input']
+          name: formValues['name-edit_input'],
+          about: formValues['about-edit_input']
         })
       )
-      .catch(err => console.log('Ошибка при обновлении данных пользователя: ', err));
+      .catch(err => console.log(`Ошибка при обновлении данных пользователя: ${err}`));
     popupEditProfile.close();
   }
 });
-
 popupEditProfile.setEventListeners();
 
 const popupImage = new PopupWithImage('.popup_card-fullscreen');
@@ -103,7 +88,7 @@ const createCard = (cardObj, selector) => {
     handleCardClick: () => popupImage.open(cardObj),
     handleDeleteCard: () => api.deleteItem(card.getId())
       .then(() => card.deleteCard())
-      .catch(err => console.log('Ошибка при удалении карточки: ', err))
+      .catch(err => console.log(`Ошибка при удалении карточки: ${err}`))
   });
   return card.generateCard();
 }
@@ -131,7 +116,6 @@ const openAddCardPopup = () => {
   formAddCardValid.resetValidation()
   popupAddCard.open();
 };
-
 
 
 const formProfileEditValid = new FormValidator(validationObj, formProfileEdit);

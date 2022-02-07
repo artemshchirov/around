@@ -13,6 +13,7 @@ export default class PopupWithForm extends Popup {
     this._form = this._element.querySelector('.form');
     this._inputList = this._element.querySelectorAll('.form__input');  
   }
+
   /**
    * Collect data from all form fields
    * @return {object} this._formValues - data collected from inputs
@@ -21,7 +22,7 @@ export default class PopupWithForm extends Popup {
     this._formValues = {};
     this._inputList.forEach(input => {  // add values of all fields to object
       this._formValues[input.name] = input.value;
-    });
+    });    
     return this._formValues;
   }
 

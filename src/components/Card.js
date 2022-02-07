@@ -3,11 +3,12 @@ export default class Card {
    * Create card and add card to the page.
    * 
    * @constructor
-   * @param  {string} {name - name for new card.
-   * @param  {string} link - source of new card.
-   * @param  {string} alt} - alt for new card.
+   * @param  {string} {id - id of card received from backend
+   * @param  {string} name - name for new card.
+   * @param  {string} link} - source of new card.
    * @param  {string} cardSelector - Selector for html template of card being created.
    * @param  {func} handleCardClick - callback for opening popup with image if clicking on card.
+   * @param  {func} handleDeleteCard - callback for deleting card from backend and then from page
    */
   constructor({ _id, name, link }, cardSelector, { handleCardClick, handleDeleteCard }) {
     this._id = _id;
@@ -42,7 +43,7 @@ export default class Card {
     this._setEventListeners();
     this._element.querySelector('.card__title').textContent = this._title;
     this._cardImage.src = this._image;
-    this._cardImage.alt = this._alt;
+    this._cardImage.alt = `Картинка пользователя: ${this._title}`
     return this._element;
   }
 

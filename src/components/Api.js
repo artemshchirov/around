@@ -1,12 +1,13 @@
 export default class Api {
-  constructor(options) {
-    this._address = options.baseUrl;
-    this._token = options.headers.authorization;
+  constructor({ baseUrl, headers }) {
+    this._address = baseUrl;
+    this._token = headers.authorization;
   }
+
   _handleResponse = response => {
     return response.ok
       ? response.json()
-      : Promise.reject(`Ошибка: ${response.status}`)
+      : Promise.reject(`Ошибка, код: ${response.status}`)
   }
 
   getUserInfo() {
@@ -18,7 +19,7 @@ export default class Api {
       .then(this._handleResponse)
   }
 
-  setUserInfo({name, about}) {
+  setUserInfo({ name, about }) {
     return fetch(`${this._address}/users/me`, {
       'method': 'PATCH',
       headers: {
@@ -66,7 +67,4 @@ export default class Api {
     })
       .then(this._handleResponse)
   }
-
-
 }
-
