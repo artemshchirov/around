@@ -64,13 +64,31 @@ const popupAddCard = new PopupWithForm({
 });
 popupAddCard.setEventListeners();
 
+// const popupEditProfile = new PopupWithForm({
+//   popupSelector: '.popup-profile-edit',
+//   handleFormSubmit: formData => {
+//     userInfo.setUserInfo({
+//       name: formData['name-edit_input'],
+//       about: formData['about-edit_input']
+//     })
+//     popupEditProfile.close();
+//   }
+// });
+
 const popupEditProfile = new PopupWithForm({
   popupSelector: '.popup-profile-edit',
   handleFormSubmit: formData => {
-    userInfo.setUserInfo({
+    api.setUserInfo({
       name: formData['name-edit_input'],
       about: formData['about-edit_input']
     })
+      .then(
+        userInfo.setUserInfo({
+          name: formData['name-edit_input'],
+          about: formData['about-edit_input']
+        })
+      )
+      .catch(err => console.log('Ошибка при обновлении данных пользователя: ', err));
     popupEditProfile.close();
   }
 });

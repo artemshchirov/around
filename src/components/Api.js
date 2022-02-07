@@ -18,6 +18,21 @@ export default class Api {
       .then(this._handleResponse)
   }
 
+  setUserInfo({name, about}) {
+    return fetch(`${this._address}/users/me`, {
+      'method': 'PATCH',
+      headers: {
+        authorization: this._token,
+        'Content-Type': 'application/json'
+      },
+      body: JSON.stringify({
+        name: name,
+        about: about,
+      })
+    })
+      .then(this._handleResponse)
+  }
+
   getInitialCards() {
     return fetch(`${this._address}/cards`, {
       headers: {
