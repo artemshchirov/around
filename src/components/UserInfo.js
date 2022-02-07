@@ -22,12 +22,12 @@ export default class UserInfo {
     };
   }
 
-  /**
-   * Receive user data and add her on the page.
-   */
-  setUserInfo({ name, about, avatar }) {
+  setUserInfo({name, about}) {
     this._name.textContent = name.trim();
     this._about.textContent = about.trim();
-    this._avatar.src = avatar || this._avatar.src;
+  }
+
+  setUserAvatar(avatar) {
+    this._avatar.src = avatar;
   }
 }

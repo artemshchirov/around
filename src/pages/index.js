@@ -25,6 +25,12 @@ const api = new Api({
   }
 });
 
+api.getUserInfo()
+  .then(({ name, about, avatar }) => {
+    userInfo.setUserInfo({ name, about })
+    userInfo.setUserAvatar(avatar)
+  })
+  .catch(err => console.log('Ошибка при загрузке информации о пользователе: ', err));
 
 
 const cardList = new Section({
@@ -90,15 +96,6 @@ const userInfo = new UserInfo({
   avatarSelector: '.profile__avatar'
 });
 
-api.getUserInfo()
-  .then(({name, about, avatar}) => {    
-    userInfo.setUserInfo({
-      name: name,
-      about: about,
-      avatar: avatar
-    })
-  })
-  .catch(err => console.log('Ошибка при загрузке информации о пользователе: ', err));
 
 const fillInputsUserData = () => {
   const { name, about } = userInfo.getUserInfo();
