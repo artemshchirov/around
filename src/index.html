@@ -19,7 +19,9 @@
     </header>
     <main class="content page__content">
       <section class="profile section content__section">
-        <img src="#" alt="Изображение профиля пользователя" class="profile__avatar" />
+        <div class="profile__avatar-container">
+          <img src="#" alt="Изображение профиля пользователя" class="profile__avatar" />
+        </div>
         <div class="profile__content">
           <div class="profile__name-btn-container">
             <h1 class="profile__name"></h1>
@@ -117,6 +119,27 @@
         </form>
       </div>
     </div>
+
+    <div class="popup popup_edit-avatar">
+      <div class="popup__overlay"></div>
+      <div class="popup__container">
+        <button class="button button_popup_close" type="button"></button>
+        <form class="form" name="edit-avatar_form" novalidate>
+          <fieldset class="form__container">
+            <legend class="form__title">
+              Обновить аватар
+            </legend>
+            <input class="form__input" name="link-card_input" id="link-card" placeholder="Ссылка на картинку" type="url"
+              required />
+            <span id="link-card-error" class="form__input-error"></span>
+            <button class="button button_form_submit" type="submit">
+              Сохранить
+            </button>
+          </fieldset>
+        </form>
+      </div>
+    </div>
+
   </div>
 
   </div>
