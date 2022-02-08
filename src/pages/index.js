@@ -83,14 +83,36 @@ popupEditProfile.setEventListeners();
 const popupImage = new PopupWithImage('.popup_card-fullscreen');
 popupImage.setEventListeners();
 
+
+// const createCard = (cardObj, selector) => {
+//   const card = new Card(cardObj, selector, {
+//     handleCardClick: () => popupImage.open(cardObj),
+//     handleDeleteCard: () => api.deleteItem(card.getId())
+//       .then(() => card.deleteCard())
+//       .catch(err => console.log(`Ошибка при удалении карточки: ${err}`))
+//   });
+//   return card.generateCard();
+// }
+
+
+const popupCardDelete = new PopupWithForm({
+  popupSelector: '.popup_card-delete-confirm', 
+  handleFormSubmit: () => {
+
+    popupCardDelete.close()
+  }
+})
+popupCardDelete.setEventListeners();
+
 const createCard = (cardObj, selector) => {
   const card = new Card(cardObj, selector, {
     handleCardClick: () => popupImage.open(cardObj),
-    handleDeleteCard: () => api.deleteItem(card.getId())
-      .then(() => card.deleteCard())
-      .catch(err => console.log(`Ошибка при удалении карточки: ${err}`))
+    handleDeleteCard: () => {
+      popupCardDelete.open();
+    }
   });
-  return card.generateCard();
+  const isOwner = cardObj.owner.name == userInfo.getUserInfo().name
+  return card.generateCard(isOwner);
 }
 
 const userInfo = new UserInfo({

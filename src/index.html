@@ -38,7 +38,7 @@
               <h2 class="card__title"></h2>
               <div class="card__like-count-container">
                 <button class="button button_like" type=" button"></button>
-                <p class="card__like-count">1</p>
+                <p class="card__like-count">0</p>
               </div>
             </div>
           </article>
@@ -94,14 +94,31 @@
         </form>
       </div>
     </div>
+
     <div class="popup popup_card-fullscreen">
       <div class="popup__overlay"></div>
       <figure class="popup__figure">
         <button class="button button_popup_close"></button>
         <img src="#" alt="" class="popup__image" />
-        <figcaption class="popup__title"></figcaption>
+        <figcaption class="popup__image-title"></figcaption>
       </figure>
     </div>
+    <div class="popup popup_card-delete-confirm">
+      <div class="popup__overlay"></div>
+      <div class="popup__container">
+        <button class="button button_popup_close" type="button"></button>
+        <form class="form">
+          <p class="form__title">
+            Вы уверены?
+          </p>
+          <button class="button button_form_submit button_form_submit-card-delete" type="submit">
+            Да
+          </button>
+        </form>
+      </div>
+    </div>
+  </div>
+
   </div>
 </body>
 

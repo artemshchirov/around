@@ -22,6 +22,7 @@
 @import url(../blocks/button/_like/button_like_isLiked.css);
 @import url(../blocks/button/_popup/button_popup_close.css);
 @import url(../blocks/button/_form/button_form_submit.css);
+@import url(../blocks/button/_form/button_form_submit-card-delete.css);
 @import url(../blocks/button/_card/button_card_delete.css);
 @import url(../blocks/button/_disabled/button_disabled.css);
 /* profile */
@@ -48,7 +49,7 @@
 @import url(../blocks/popup/_opened/popup_opened.css);
 @import url(../blocks/popup/__container/popup__container.css);
 @import url(../blocks/popup/__image/popup__image.css);
-@import url(../blocks/popup/__title/popup__title.css);
+@import url(../blocks/popup/__image-title/popup__image-title.css);
 @import url(../blocks/popup/_card-fullscreen/popup_card-fullscreen.css);
 @import url(../blocks/popup/__figure/popup__figure.css);
 @import url(../blocks/popup/__overlay/popup__overlay.css);

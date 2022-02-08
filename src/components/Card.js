@@ -10,10 +10,11 @@ export default class Card {
    * @param  {func} handleCardClick - callback for opening popup with image if clicking on card.
    * @param  {func} handleDeleteCard - callback for deleting card from backend and then from page
    */
-  constructor({ _id, name, link }, cardSelector, { handleCardClick, handleDeleteCard }) {
+  constructor({ _id, name, link, likes }, cardSelector, { handleCardClick, handleDeleteCard }) {
     this._id = _id;
     this._title = name;
     this._image = link;
+    this._likes = likes.length;
     this._cardSelector = cardSelector;
     this._handleCardClick = handleCardClick;
     this._handleDeleteCard = handleDeleteCard;
@@ -36,14 +37,21 @@ export default class Card {
    * 
    * @return {object} - Card object ready to be added to the page
    */
-  generateCard() {
+  generateCard(isOwner) {
     this._element = this._getTemplate();
     this._cardImage = this._element.querySelector('.card__image');
     this._buttonLike = this._element.querySelector('.button_like');
+    this._countLikes = this._element.querySelector(".card__like-count");
+    this._countLikes.textContent = this._likes;
     this._setEventListeners();
     this._element.querySelector('.card__title').textContent = this._title;
     this._cardImage.src = this._image;
     this._cardImage.alt = `Картинка пользователя: ${this._title}`
+    
+    if (!isOwner) {
+      this._element.querySelector('.button_card_delete').style.display = 'none';
+    }
+
     return this._element;
   }
 
