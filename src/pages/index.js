@@ -7,12 +7,14 @@ import PopupWithForm from "../components/PopupWithForm.js";
 import PopupWithImage from '../components/PopupWithImage.js'
 import FormValidator from "../components/FormValidator.js";
 import {
-  editProfileBtn,
   formProfileEdit,
+  formEditAvatar,
+  formAddCard,
+  editProfileBtn,
+  editAvatarBtn,
+  addCardBtn,
   usernameInput,
   aboutInput,
-  formAddCard,
-  addCardBtn,
   validationObj,
 } from "../utils/constants.js";
 
@@ -115,6 +117,14 @@ const createCard = (cardObj, selector) => {
   return card.generateCard(isOwner);
 }
 
+const popupEditAvatar = new PopupWithForm({
+  popupSelector: '.popup_edit-avatar',
+  handleFormSubmit: () => {
+
+  }
+})
+popupEditAvatar.setEventListeners();
+
 const userInfo = new UserInfo({
   nameSelector: '.profile__name',
   aboutSelector: '.profile__about',
@@ -130,20 +140,27 @@ const fillInputsUserData = () => {
 
 const openProfileEditPopup = () => {
   fillInputsUserData();
-  formProfileEditValid.resetValidation()
+  formProfileEditValid.resetValidation();
   popupEditProfile.open();
 };
 
 const openAddCardPopup = () => {
-  formAddCardValid.resetValidation()
+  formAddCardValid.resetValidation();
   popupAddCard.open();
 };
 
+const openEditAvatarPopup = () => {
+  formEditAvatarValid.resetValidation();
+  popupEditAvatar.open()
+}
 
 const formProfileEditValid = new FormValidator(validationObj, formProfileEdit);
 const formAddCardValid = new FormValidator(validationObj, formAddCard);
+const formEditAvatarValid = new FormValidator(validationObj, formEditAvatar);
 formProfileEditValid.enableValidation();
 formAddCardValid.enableValidation();
+formEditAvatarValid.enableValidation();
 
 editProfileBtn.addEventListener("click", openProfileEditPopup);
 addCardBtn.addEventListener("click", openAddCardPopup);
+editAvatarBtn.addEventListener("click", openEditAvatarPopup);
