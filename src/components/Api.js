@@ -4,6 +4,21 @@ export default class Api {
     this._token = headers.authorization;
   }
 
+  setAvatar({ avatar }) {
+    
+    return fetch(`${this._address}/users/me/avatar`, {
+      'method': 'PATCH',
+      headers: {
+        authorization: this._token,
+        'Content-Type': 'application/json'
+      },
+      body: JSON.stringify({
+        avatar: avatar
+      })
+    })
+      .then(this._handleResponse)
+  }
+
   _handleResponse = response => {
     return response.ok
       ? response.json()

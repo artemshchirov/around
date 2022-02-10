@@ -46,7 +46,7 @@ const popupAddCard = new PopupWithForm({
       name: formData['name-card_input'],
       link: formData['link-card_input'],
     })
-      .then(newCardObj => {        
+      .then(newCardObj => {
         const cardElement = createCard(newCardObj, 'card');
         cardList.addItem(cardElement, true);
       })
@@ -98,7 +98,7 @@ popupImage.setEventListeners();
 
 
 const popupCardDelete = new PopupWithForm({
-  popupSelector: '.popup_card-delete-confirm', 
+  popupSelector: '.popup_card-delete-confirm',
   handleFormSubmit: () => {
 
     popupCardDelete.close()
@@ -119,10 +119,19 @@ const createCard = (cardObj, selector) => {
 
 const popupEditAvatar = new PopupWithForm({
   popupSelector: '.popup_edit-avatar',
-  handleFormSubmit: () => {
-
+  handleFormSubmit: formValues => {
+    console.log('form: ', formValues['link-avatar_input']);
+    
+    api.setAvatar({
+      avatar: formValues['link-avatar_input']
+    })
+      .then(
+        userInfo.setUserAvatar(formValues['link-avatar_input'])
+      )
+      .catch(err => console.log(`Ошибка при обновлении аватара: ${err}`));
+    popupEditAvatar.close();
   }
-})
+});
 popupEditAvatar.setEventListeners();
 
 const userInfo = new UserInfo({
