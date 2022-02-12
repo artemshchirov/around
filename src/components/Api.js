@@ -4,8 +4,13 @@ export default class Api {
     this._token = headers.authorization;
   }
 
+  _handleResponse = response => {
+    return response.ok
+      ? response.json()
+      : Promise.reject(`Ошибка, код: ${response.status}`);
+  }
+
   setAvatar({ avatar }) {
-    
     return fetch(`${this._address}/users/me/avatar`, {
       'method': 'PATCH',
       headers: {
@@ -16,13 +21,7 @@ export default class Api {
         avatar: avatar
       })
     })
-      .then(this._handleResponse)
-  }
-
-  _handleResponse = response => {
-    return response.ok
-      ? response.json()
-      : Promise.reject(`Ошибка, код: ${response.status}`)
+      .then(this._handleResponse);
   }
 
   getUserInfo() {
@@ -31,7 +30,7 @@ export default class Api {
         authorization: this._token,
       }
     })
-      .then(this._handleResponse)
+      .then(this._handleResponse);
   }
 
   setUserInfo({ name, about }) {
@@ -46,7 +45,7 @@ export default class Api {
         about: about,
       })
     })
-      .then(this._handleResponse)
+      .then(this._handleResponse);
   }
 
   getInitialCards() {
@@ -55,7 +54,7 @@ export default class Api {
         authorization: this._token,
       }
     })
-      .then(this._handleResponse)
+      .then(this._handleResponse);
   }
 
   addItem({ name, link }) {
@@ -70,7 +69,7 @@ export default class Api {
         link: link,
       })
     })
-      .then(this._handleResponse)
+      .then(this._handleResponse);
   }
 
   deleteItem(id) {
@@ -80,6 +79,26 @@ export default class Api {
         authorization: this._token,
       }
     })
-      .then(this._handleResponse)
+      .then(this._handleResponse);
+  }
+
+  addLike(cardId) {    
+    return fetch(`${this._address}/cards/${cardId}/likes`, {
+      'method': 'PUT',
+      headers: {
+        authorization: this._token,
+      }
+    })
+      .then(this._handleResponse);
+  }
+
+  deleteLike(cardId) {
+    return fetch(`${this._address}/cards/${cardId}/likes`, {
+      'method': 'DELETE',
+      headers: {
+        authorization: this._token,
+      }
+    })
+      .then(this._handleResponse);
   }
 }

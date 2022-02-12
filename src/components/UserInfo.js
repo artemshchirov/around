@@ -22,7 +22,7 @@ export default class UserInfo {
     };
   }
 
-  setUserInfo({name, about}) {
+  setUserInfo({ name, about }) {
     this._name.textContent = name.trim();
     this._about.textContent = about.trim();
   }
