@@ -6,6 +6,7 @@ export const editProfileBtn = document.querySelector(".button_profile_edit");
 export const editAvatarBtn = document.querySelector(".profile__avatar-container");
 export const usernameInput = document.getElementById("name-edit");
 export const aboutInput = document.getElementById("about-edit");
+export const submitChangeAvatarBtn = document.querySelector(".button_submit-change-avatar");
 export const validationObj = {
     formSelector: '.form',
     inputSelector: '.form__input',

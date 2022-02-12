@@ -1,6 +1,6 @@
 {
   "name": "mesto",
-  "version": "0.0.8",
+  "version": "0.0.9",
   "description": "Редактируемая галерея фотографий с возможностью поставить им лайк",
   "main": "index.js",
   "scripts": {
