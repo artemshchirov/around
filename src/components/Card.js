@@ -51,7 +51,7 @@ export default class Card {
     this._cardImage.alt = `Картинка пользователя: ${this._title}`
     this._isLiked = isLiked;
     if (!isOwner) this._element.querySelector('.button_card_delete').style.display = 'none';
-    if (this._isLiked) this._toggleLike();
+    if (this._isLiked) this._buttonLike.classList.add('button_like_isLiked')
     return this._element;
   }
 
@@ -63,13 +63,9 @@ export default class Card {
     this._buttonLike.addEventListener('click', () => {
       this._isLiked = !this._isLiked;
       this._handleChangeLikeStatus();
-      this._toggleLike();
+      this._buttonLike.classList.toggle('button_like_isLiked');
     });
     this._element.querySelector('.button_card_delete').addEventListener('click', () => this._handleDeleteCard());
-  }
-
-  _toggleLike() {
-    this._buttonLike.classList.toggle('button_like_isLiked');
   }
 
   getLikeStatus() {
@@ -85,8 +81,6 @@ export default class Card {
   }
 
   updateLikesCount(updatedLikesCount) {
-    console.log('upd: ', updatedLikesCount);
-    
     this._countLikes.textContent = updatedLikesCount;
   }
 }

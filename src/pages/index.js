@@ -44,7 +44,7 @@ const popupAddCard = new PopupWithForm({
   handleFormSubmit: formData => {
     api.addItem({
       name: formData['name-card_input'],
-      link: formData['link-card_input'],
+      link: formData['link-card_input']
     })
       .then(newCardObj => {
         const cardElement = createCard(newCardObj, 'card');
@@ -58,8 +58,8 @@ popupAddCard.setEventListeners();
 
 api.getUserInfo()
   .then(({ name, about, avatar }) => {
-    userInfo.setUserInfo({ name, about })
-    userInfo.setUserAvatar(avatar)
+    userInfo.setUserInfo({ name, about });
+    userInfo.setUserAvatar(avatar);
   })
   .catch(err => console.log(`Ошибка при загрузке информации о пользователе: ${err}`));
 
@@ -143,7 +143,6 @@ const userInfo = new UserInfo({
   aboutSelector: '.profile__about',
   avatarSelector: '.profile__avatar'
 });
-
 
 const fillInputsUserData = () => {
   const { name, about } = userInfo.getUserInfo();
