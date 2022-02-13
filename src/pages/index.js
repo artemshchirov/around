@@ -20,9 +20,6 @@ import {
   submitChangeAvatarBtn,
 } from "../utils/constants.js";
 
-console.log(': ', submitChangeAvatarBtn);
-
-
 const api = new Api({
   baseUrl: 'https://mesto.nomoreparties.co/v1/cohort-35',
   headers: {
@@ -38,9 +35,13 @@ const cardList = new Section({
   }
 }, '.cards')
 
-api.getInitialCards()
-  .then(initialCards => cardList.renderItems(initialCards))
-  .catch(err => console.log(`Ошибка при создании всех карточек: ${err}`));
+Promise.all([api.getUserInfo(), api.getInitialCards()])
+  .then(([{ name, about, avatar }, initialCards]) => {
+    userInfo.setUserInfo({ name, about });
+    userInfo.setUserAvatar(avatar);
+    cardList.renderItems(initialCards);
+  })
+  .catch(err => console.log(`Ошибка при загрузке данных пользователя и создании всех карточек: ${err}`));
 
 const popupAddCard = new PopupWithForm({
   popupSelector: '.popup_card-add',
@@ -58,13 +59,6 @@ const popupAddCard = new PopupWithForm({
   },
 })
 popupAddCard.setEventListeners();
-
-api.getUserInfo()
-  .then(({ name, about, avatar }) => {
-    userInfo.setUserInfo({ name, about });
-    userInfo.setUserAvatar(avatar);
-  })
-  .catch(err => console.log(`Ошибка при загрузке информации о пользователе: ${err}`));
 
 const popupEditProfile = new PopupWithForm({
   popupSelector: '.popup-profile-edit',
@@ -90,10 +84,7 @@ popupImage.setEventListeners();
 
 const popupCardDelete = new PopupSubmit(
   '.popup_card-delete-confirm', {
-  handleSubmit: () => {
-    popupCardDelete.submitAction();
-    // popupCardDelete.close();
-  }
+  handleSubmit: () => popupCardDelete.submitAction()
 })
 popupCardDelete.setEventListeners();
 
