@@ -17,7 +17,6 @@ import {
   usernameInput,
   aboutInput,
   validationObj,
-  submitChangeAvatarBtn,
 } from "../utils/constants.js";
 
 const api = new Api({
@@ -46,6 +45,7 @@ Promise.all([api.getUserInfo(), api.getInitialCards()])
 const popupAddCard = new PopupWithForm({
   popupSelector: '.popup_card-add',
   handleFormSubmit: formData => {
+    renderSaving(true, 'button_submit-add-card');
     api.addItem({
       name: formData['name-card_input'],
       link: formData['link-card_input']
@@ -55,7 +55,9 @@ const popupAddCard = new PopupWithForm({
         cardList.addItem(cardElement, true);
         popupAddCard.close();
       })
-      .catch(err => console.log(`Ошибка при создании новой карточки: ${err}`));
+      .catch(err => console.log(`Ошибка при создании новой карточки: ${err}`))
+      .finally(() => renderSaving(false, 'button_submit-add-card'));
+
   },
 })
 popupAddCard.setEventListeners();
@@ -63,6 +65,7 @@ popupAddCard.setEventListeners();
 const popupEditProfile = new PopupWithForm({
   popupSelector: '.popup-profile-edit',
   handleFormSubmit: formValues => {
+    renderSaving(true, 'button_submit-change-userinfo');
     api.setUserInfo({
       name: formValues['name-edit_input'],
       about: formValues['about-edit_input']
@@ -74,7 +77,8 @@ const popupEditProfile = new PopupWithForm({
         })
         popupEditProfile.close();
       })
-      .catch(err => console.log(`Ошибка при обновлении данных пользователя: ${err}`));
+      .catch(err => console.log(`Ошибка при обновлении данных пользователя: ${err}`))
+      .finally(() => renderSaving(false, 'button_submit-edit-profile'));
   }
 })
 popupEditProfile.setEventListeners();
@@ -94,12 +98,14 @@ const createCard = (cardObj, selector) => {
     handleDeleteCard: () => {
       popupCardDelete.setSubmitAction({
         handleSubmitAction: () => {
+          renderDeleting(true, 'button_form_submit-delete-card');
           api.deleteItem(card.getId())
             .then(() => {
               card.deleteCard();
               popupCardDelete.close();
             })
-            .catch(err => console.log(`Ошибка при удалении карточки: ${err}`));
+            .catch(err => console.log(`Ошибка при удалении карточки: ${err}`))
+            .finally(() => renderDeleting(false, 'button_form_submit-delete-card'));
         }
       })
       popupCardDelete.open()
@@ -122,18 +128,28 @@ const createCard = (cardObj, selector) => {
   return card.generateCard(isOwner, isLiked);
 }
 
-const renderSaving = isSaving => {
+const renderSaving = (isSaving, buttonSelector) => {
+  const button = document.querySelector(`.${buttonSelector}`);
   if (isSaving) {
-    submitChangeAvatarBtn.textContent = "Сохранение...";
+    button.textContent = "Сохранение...";
   } else {
-    submitChangeAvatarBtn.textContent = "Сохранить";
+    button.textContent = "Сохранить";
+  }
+}
+
+const renderDeleting = (isDeleting, buttonSelector) => {
+  const button = document.querySelector(`.${buttonSelector}`);
+  if (isDeleting) {
+    button.textContent = "Удаление...";
+  } else {
+    button.textContent = "Да";
   }
 }
 
 const popupEditAvatar = new PopupWithForm({
   popupSelector: '.popup_edit-avatar',
   handleFormSubmit: formValues => {
-    renderSaving(true);
+    renderSaving(true, 'button_submit-change-avatar');
     api.setAvatar({
       avatar: formValues['link-avatar_input']
     })
@@ -142,7 +158,7 @@ const popupEditAvatar = new PopupWithForm({
         popupEditAvatar.close();
       })
       .catch(err => console.log(`Ошибка при обновлении аватара: ${err}`))
-      .finally(() => renderSaving(false));
+      .finally(() => renderSaving(false, 'button_submit-change-avatar'));
   }
 })
 popupEditAvatar.setEventListeners();
