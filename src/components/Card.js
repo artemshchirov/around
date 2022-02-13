@@ -63,7 +63,6 @@ export default class Card {
     this._buttonLike.addEventListener('click', () => {
       this._isLiked = !this._isLiked;
       this._handleChangeLikeStatus();
-      this._buttonLike.classList.toggle('button_like_isLiked');
     });
     this._element.querySelector('.button_card_delete').addEventListener('click', () => this._handleDeleteCard());
   }
@@ -80,7 +79,8 @@ export default class Card {
     this._element.remove();
   }
 
-  updateLikesCount(updatedLikesCount) {
-    this._countLikes.textContent = updatedLikesCount;
+  updateLike(updatedLikes) {
+    this._buttonLike.classList.toggle('button_like_isLiked');
+    this._countLikes.textContent = updatedLikes.length;
   }
 }

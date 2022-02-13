@@ -17,11 +17,7 @@ import {
   usernameInput,
   aboutInput,
   validationObj,
-  submitChangeAvatarBtn,
 } from "../utils/constants.js";
-
-console.log(': ', submitChangeAvatarBtn);
-
 
 const api = new Api({
   baseUrl: 'https://mesto.nomoreparties.co/v1/cohort-35',
@@ -38,13 +34,18 @@ const cardList = new Section({
   }
 }, '.cards')
 
-api.getInitialCards()
-  .then(initialCards => cardList.renderItems(initialCards))
-  .catch(err => console.log(`Ошибка при создании всех карточек: ${err}`));
+Promise.all([api.getUserInfo(), api.getInitialCards()])
+  .then(([{ name, about, avatar }, initialCards]) => {
+    userInfo.setUserInfo({ name, about });
+    userInfo.setUserAvatar(avatar);
+    cardList.renderItems(initialCards);
+  })
+  .catch(err => console.log(`Ошибка при загрузке данных пользователя и создании всех карточек: ${err}`));
 
 const popupAddCard = new PopupWithForm({
   popupSelector: '.popup_card-add',
   handleFormSubmit: formData => {
+    renderSaving(true, 'button_submit-add-card');
     api.addItem({
       name: formData['name-card_input'],
       link: formData['link-card_input']
@@ -52,35 +53,32 @@ const popupAddCard = new PopupWithForm({
       .then(newCardObj => {
         const cardElement = createCard(newCardObj, 'card');
         cardList.addItem(cardElement, true);
+        popupAddCard.close();
       })
-      .catch(err => console.log(`Ошибка при создании новой карточки: ${err}`));
-    popupAddCard.close();
+      .catch(err => console.log(`Ошибка при создании новой карточки: ${err}`))
+      .finally(() => renderSaving(false, 'button_submit-add-card'));
+
   },
 })
 popupAddCard.setEventListeners();
 
-api.getUserInfo()
-  .then(({ name, about, avatar }) => {
-    userInfo.setUserInfo({ name, about });
-    userInfo.setUserAvatar(avatar);
-  })
-  .catch(err => console.log(`Ошибка при загрузке информации о пользователе: ${err}`));
-
 const popupEditProfile = new PopupWithForm({
   popupSelector: '.popup-profile-edit',
   handleFormSubmit: formValues => {
+    renderSaving(true, 'button_submit-edit-profile');
     api.setUserInfo({
       name: formValues['name-edit_input'],
       about: formValues['about-edit_input']
     })
-      .then(
+      .then(() => {
         userInfo.setUserInfo({
           name: formValues['name-edit_input'],
           about: formValues['about-edit_input']
         })
-      )
-      .catch(err => console.log(`Ошибка при обновлении данных пользователя: ${err}`));
-    popupEditProfile.close();
+        popupEditProfile.close();
+      })
+      .catch(err => console.log(`Ошибка при обновлении данных пользователя: ${err}`))
+      .finally(() => renderSaving(false, 'button_submit-edit-profile'));
   }
 })
 popupEditProfile.setEventListeners();
@@ -90,10 +88,7 @@ popupImage.setEventListeners();
 
 const popupCardDelete = new PopupSubmit(
   '.popup_card-delete-confirm', {
-  handleSubmit: () => {
-    popupCardDelete.submitAction();
-    popupCardDelete.close();
-  }
+  handleSubmit: () => popupCardDelete.submitAction()
 })
 popupCardDelete.setEventListeners();
 
@@ -102,10 +97,15 @@ const createCard = (cardObj, selector) => {
     handleCardClick: () => popupImage.open(cardObj),
     handleDeleteCard: () => {
       popupCardDelete.setSubmitAction({
-        handleSubmit: () => {
+        handleSubmitAction: () => {
+          renderDeleting(true, 'button_form_submit-delete-card');
           api.deleteItem(card.getId())
-            .then(card.deleteCard())
-            .catch(err => console.log(`Ошибка при удалении карточки: ${err}`));
+            .then(() => {
+              card.deleteCard();
+              popupCardDelete.close();
+            })
+            .catch(err => console.log(`Ошибка при удалении карточки: ${err}`))
+            .finally(() => renderDeleting(false, 'button_form_submit-delete-card'));
         }
       })
       popupCardDelete.open()
@@ -113,11 +113,11 @@ const createCard = (cardObj, selector) => {
     handleChangeLikeStatus: () => {
       if (card.getLikeStatus()) {
         api.addLike(card.getId())
-          .then(cardLiked => card.updateLikesCount(cardLiked.likes.length))
+          .then(cardLiked => card.updateLike(cardLiked.likes))
           .catch(err => console.log(`Ошибка при добавлении лайка: ${err}`));
       } else {
         api.deleteLike(card.getId())
-          .then(cardLiked => card.updateLikesCount(cardLiked.likes.length))
+          .then(cardLiked => card.updateLike(cardLiked.likes))
           .catch(err => console.log(`Ошибка при удалении лайка: ${err}`));
       }
     }
@@ -128,25 +128,37 @@ const createCard = (cardObj, selector) => {
   return card.generateCard(isOwner, isLiked);
 }
 
-const renderSaving = isSaving => {
+const renderSaving = (isSaving, buttonSelector) => {
+  const button = document.querySelector(`.${buttonSelector}`);
   if (isSaving) {
-    submitChangeAvatarBtn.textContent = "Сохранение...";
+    button.textContent = "Сохранение...";
   } else {
-    submitChangeAvatarBtn.textContent = "Сохранить";
+    button.textContent = "Сохранить";
+  }
+}
+
+const renderDeleting = (isDeleting, buttonSelector) => {
+  const button = document.querySelector(`.${buttonSelector}`);
+  if (isDeleting) {
+    button.textContent = "Удаление...";
+  } else {
+    button.textContent = "Да";
   }
 }
 
 const popupEditAvatar = new PopupWithForm({
   popupSelector: '.popup_edit-avatar',
   handleFormSubmit: formValues => {
-    renderSaving(true);
+    renderSaving(true, 'button_submit-change-avatar');
     api.setAvatar({
       avatar: formValues['link-avatar_input']
     })
-      .then(userInfo.setUserAvatar(formValues['link-avatar_input']))
+      .then(() => {
+        userInfo.setUserAvatar(formValues['link-avatar_input']);
+        popupEditAvatar.close();
+      })
       .catch(err => console.log(`Ошибка при обновлении аватара: ${err}`))
-      .finally(() => renderSaving(false));
-    popupEditAvatar.close();
+      .finally(() => renderSaving(false, 'button_submit-change-avatar'));
   }
 })
 popupEditAvatar.setEventListeners();

@@ -17,7 +17,7 @@ export default class Section {
    */
   addItem(element, first=false) {
     if (first) this._container.prepend(element);
-    else this._container.append(element);  //? if else syntax ok?
+    else this._container.append(element);
   }
 
   /** Draw all elements on page by callback func. */
