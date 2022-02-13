@@ -52,9 +52,9 @@ const popupAddCard = new PopupWithForm({
       .then(newCardObj => {
         const cardElement = createCard(newCardObj, 'card');
         cardList.addItem(cardElement, true);
+        popupAddCard.close();
       })
       .catch(err => console.log(`Ошибка при создании новой карточки: ${err}`));
-    popupAddCard.close();
   },
 })
 popupAddCard.setEventListeners();
@@ -73,14 +73,14 @@ const popupEditProfile = new PopupWithForm({
       name: formValues['name-edit_input'],
       about: formValues['about-edit_input']
     })
-      .then(
+      .then(() => {
         userInfo.setUserInfo({
           name: formValues['name-edit_input'],
           about: formValues['about-edit_input']
         })
-      )
+        popupEditProfile.close();
+      })
       .catch(err => console.log(`Ошибка при обновлении данных пользователя: ${err}`));
-    popupEditProfile.close();
   }
 })
 popupEditProfile.setEventListeners();
@@ -92,7 +92,7 @@ const popupCardDelete = new PopupSubmit(
   '.popup_card-delete-confirm', {
   handleSubmit: () => {
     popupCardDelete.submitAction();
-    popupCardDelete.close();
+    // popupCardDelete.close();
   }
 })
 popupCardDelete.setEventListeners();
@@ -102,9 +102,12 @@ const createCard = (cardObj, selector) => {
     handleCardClick: () => popupImage.open(cardObj),
     handleDeleteCard: () => {
       popupCardDelete.setSubmitAction({
-        handleSubmit: () => {
+        handleSubmitAction: () => {
           api.deleteItem(card.getId())
-            .then(card.deleteCard())
+            .then(() => {
+              card.deleteCard();
+              popupCardDelete.close();
+            })
             .catch(err => console.log(`Ошибка при удалении карточки: ${err}`));
         }
       })
@@ -113,11 +116,11 @@ const createCard = (cardObj, selector) => {
     handleChangeLikeStatus: () => {
       if (card.getLikeStatus()) {
         api.addLike(card.getId())
-          .then(cardLiked => card.updateLikesCount(cardLiked.likes.length))
+          .then(cardLiked => card.updateLike(cardLiked.likes))
           .catch(err => console.log(`Ошибка при добавлении лайка: ${err}`));
       } else {
         api.deleteLike(card.getId())
-          .then(cardLiked => card.updateLikesCount(cardLiked.likes.length))
+          .then(cardLiked => card.updateLike(cardLiked.likes))
           .catch(err => console.log(`Ошибка при удалении лайка: ${err}`));
       }
     }
@@ -143,10 +146,12 @@ const popupEditAvatar = new PopupWithForm({
     api.setAvatar({
       avatar: formValues['link-avatar_input']
     })
-      .then(userInfo.setUserAvatar(formValues['link-avatar_input']))
+      .then(() => {
+        userInfo.setUserAvatar(formValues['link-avatar_input']);
+        popupEditAvatar.close();
+      })
       .catch(err => console.log(`Ошибка при обновлении аватара: ${err}`))
       .finally(() => renderSaving(false));
-    popupEditAvatar.close();
   }
 })
 popupEditAvatar.setEventListeners();

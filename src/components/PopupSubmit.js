@@ -16,7 +16,7 @@ export default class PopupSubmit extends Popup {
     });
   }
 
-  setSubmitAction({ handleSubmit }) {
-    this.submitAction = handleSubmit;
+  setSubmitAction({ handleSubmitAction }) {
+    this.submitAction = handleSubmitAction;
   }
 }
