@@ -65,7 +65,7 @@ popupAddCard.setEventListeners();
 const popupEditProfile = new PopupWithForm({
   popupSelector: '.popup-profile-edit',
   handleFormSubmit: formValues => {
-    renderSaving(true, 'button_submit-change-userinfo');
+    renderSaving(true, 'button_submit-edit-profile');
     api.setUserInfo({
       name: formValues['name-edit_input'],
       about: formValues['about-edit_input']

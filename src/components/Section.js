@@ -15,9 +15,9 @@ export default class Section {
   /**
    * @param  {object} element - element to be added in container == on the page
    */
-  addItem(element, first=false) {
+  addItem(element, first = false) {
     if (first) this._container.prepend(element);
-    else this._container.append(element);  //? if else syntax ok?
+    else this._container.append(element);
   }
 
   /** Draw all elements on page by callback func. */
