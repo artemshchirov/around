@@ -1,11 +1,11 @@
 export default class UserInfo {
   /** Managing the display of user information on the page.
-   * 
+   *
    * @constructor
    * @param  {string} {nameSelector  - selector for finding username on the page
    * @param  {string} aboutSelector} - - selector for finding about info on the page
    */
-  constructor({ nameSelector, aboutSelector, avatarSelector}) {
+  constructor({ nameSelector, aboutSelector, avatarSelector }) {
     this._name = document.querySelector(nameSelector);
     this._about = document.querySelector(aboutSelector);
     this._avatar = document.querySelector(avatarSelector);
@@ -15,10 +15,10 @@ export default class UserInfo {
    * @return {object} - info about user {name, about}.
    */
   getUserInfo() {
-    return { 
-      name: this._name.textContent.trim(), 
-      about: this._about.textContent.trim(), 
-      avatar: this._avatar.src
+    return {
+      name: this._name.textContent.trim(),
+      about: this._about.textContent.trim(),
+      avatar: this._avatar.src,
     };
   }
 

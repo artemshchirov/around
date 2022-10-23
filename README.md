@@ -1,38 +1,51 @@
-# Around the World
+# Around
 
-## Project Link
-https://github.com/artemschirov/mesto
+## Have a look at the project on GitHub Pages
+
+<https://artemshchirov.github.io/around/>
 
 ## Project Description
-It is a web page showing a user's information and photos they have uploaded from around the US. Images can be deleted, liked, and new images added.
 
-### This recent updated added:
+It is a web page showing a user's information and photos they have uploaded from Around
 
-Building a project with Webpack
-Refactoring of code to reflect modular JavaScript and OOP
+### Functionality
 
-## Technologies and Techniques Used
-This web page was created with HTML, CSS, and JavaScript and made adaptive to different screen sizes as a culmination of the skills learned in Basic JavaScript and Applied Javascript. It was also built using Webpack and Babel.
+- Adding new cards to the grid
+- Deleting cards created by the user
+- Editing user profile information
+- Form validation on the client side
+- Communication with external API to fetch and patch/delete data
 
-### Some of the skills used are:
+### Technologies used
 
-* Working with Figma
-* Grid layout
-* Developing an interface for different layouts
-* JavaScript variables and variable types
-* Declaring and calling functions
-* Working in DOM
-* Selecting elements using querySelector
-* Working with CSS classes using the className property and toggle method
-* Controlling content with textContent properties
-* Reacting to events with addEventListener
-* Adding information to an array
-* Element cloning
-* Template cloning
-* Working with Objects in JavaScript
-* Event handling
-* Form Validation
-* Object Oriented Programming
-* Modular JavaScript
-* Installation of Webpack and Babel
-* Working with APIs
+- Adaptive layout using flexbox and grid positioning
+- Nested file structure according to BEM methodology
+- Asynchronous JavaScript
+- Object oriented programming
+- DOM API
+- Fetch API
+- Webpack
+- Browser form validation
+
+### Some of the skills used are
+
+- Working with Figma
+- Developing an interface for different layouts
+- JavaScript variables and variable types
+- Declaring and calling functions
+- Working in DOM
+- Selecting elements using querySelector
+- Working with CSS classes using the className property and toggle method
+- Controlling content with textContent properties
+- Reacting to events with addEventListener
+- Adding information to an array
+- Element cloning
+- Template cloning
+- Event handling
+- Object Oriented Programming
+- Modular JavaScript
+- Installation of Webpack and Babel
+
+### Further improvements
+
+the project was refactored using react ([link to the repository](https://github.com/artemshchirov/react-around)) and the backend was written for it ([backend repository](https://github.com/artemshchirov/express-around)).

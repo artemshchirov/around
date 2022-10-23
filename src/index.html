@@ -1,145 +1,194 @@
 <!DOCTYPE html>
-<html lang="ru">
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <title>Around</title>
+    <meta name="description" content="Gallery" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <meta name="keywords" content="social media, images, likes, profile" />
+    <meta name="author" content="Artem Shchirov" />
+  </head>
 
-<head>
-  <meta charset="UTF-8" />
-  <title>Место</title>
-  <meta name="description" content="Галерея мест" />
-  <meta name="viewport" content="width=device-width, initial-scale=1" />
-  <meta name="keywords" content="интересное место, необычная локация, социальная сеть" />
-  <meta name="author" content="Артём Щиров на Яндекс Практикум" />
-</head>
-
-<body class="page">
-  <div class="page__container">
-    <header class="header page__header">
-      <a href="https://artemschirov.github.io/mesto/index.html">
-        <img src="<%=require('./images/logo-mesto.svg')%>" alt="Логотип 'Место'" class="logo" />
-      </a>
-    </header>
-    <main class="content page__content">
-      <section class="profile section content__section">
-        <div class="profile__avatar-container">
-          <img src="#" alt="Изображение профиля пользователя" class="profile__avatar" />
-        </div>
-        <div class="profile__content">
-          <div class="profile__name-btn-container">
-            <h1 class="profile__name"></h1>
-            <button class="button button_profile_edit" type="button"></button>
+  <body class="page">
+    <div class="page__container">
+      <header class="header page__header">
+        <a
+          href="https://artemshchirov.github.io/around/index.html"
+          target="_blank"
+        >
+          <img
+            src="<%=require('./images/logo-around.svg')%>"
+            alt="logo 'Around'"
+            class="logo"
+          />
+        </a>
+      </header>
+      <main class="content page__content">
+        <section class="profile section content__section">
+          <div class="profile__avatar-container">
+            <img src="#" alt="User avatar" class="profile__avatar" />
           </div>
-          <p class="profile__about"></p>
-        </div>
-        <button class="button button_profile_add" type="button"></button>
-      </section>
-      <section class="cards section content__section">
-        <template id="card">
-          <article class="card">
-            <img src="#" alt="" class="card__image" />
-            <button class="button button_card_delete"></button>
-            <div class="card__title-like-container">
-              <h2 class="card__title"></h2>
-              <div class="card__like-count-container">
-                <button class="button button_like" type=" button"></button>
-                <p class="card__like-count">0</p>
-              </div>
+          <div class="profile__content">
+            <div class="profile__name-btn-container">
+              <h1 class="profile__name"></h1>
+              <button class="button button_profile_edit" type="button"></button>
             </div>
-          </article>
-        </template>
-      </section>
-    </main>
-    <footer class="footer section page__footer">
-      <p class="footer__copyright">
-        &copy; 2022 Ɐrtem Schirov
-      </p>
-    </footer>
-    <div class="popup popup-profile-edit">
-      <div class="popup__overlay"></div>
-      <div class="popup__container">
-        <button class="button button_popup_close" type="button"></button>
-        <form class="form" name="profile-edit_form" novalidate>
-          <fieldset class="form__container">
-            <legend class="form__title">
-              Редактировать профиль
-            </legend>
-            <input class="form__input" name="name-edit_input" id="name-edit" type="text" placeholder="Имя" minlength="2"
-              maxlength="40" required />
-            <span id="name-edit-error" class="form__input-error"></span>
-            <input class="form__input" name="about-edit_input" id="about-edit" type="text" placeholder="Профессия"
-              minlength="2" maxlength="200" required />
-            <span id="about-edit-error" class="form__input-error"></span>
-            <button class="button button_form_submit button_submit-edit-profile" type="submit">
-              Сохранить
-            </button>
-          </fieldset>
-        </form>
+            <p class="profile__about"></p>
+          </div>
+          <button class="button button_profile_add" type="button"></button>
+        </section>
+        <section class="cards section content__section">
+          <template id="card">
+            <article class="card">
+              <img src="#" alt="Card" class="card__image" />
+              <button class="button button_card_delete"></button>
+              <div class="card__title-like-container">
+                <h2 class="card__title"></h2>
+                <div class="card__like-count-container">
+                  <button class="button button_like" type="button"></button>
+                  <p class="card__like-count">0</p>
+                </div>
+              </div>
+            </article>
+          </template>
+        </section>
+      </main>
+      <footer class="footer section page__footer">
+        <a
+          class="button"
+          href="https://github.com/artemshchirov"
+          target="_blank"
+        >
+          <p class="footer__copyright">&copy; 2022 Ɐrtem Shchirov</p>
+        </a>
+      </footer>
+      <div class="popup popup-profile-edit">
+        <div class="popup__overlay"></div>
+        <div class="popup__container">
+          <button class="button button_popup_close" type="button"></button>
+          <form class="form" name="profile-edit_form" novalidate>
+            <fieldset class="form__container">
+              <legend class="form__title">Edit profile</legend>
+              <input
+                class="form__input"
+                name="name-edit_input"
+                id="name-edit"
+                type="text"
+                placeholder="Username"
+                minlength="2"
+                maxlength="40"
+                required
+              />
+              <span id="name-edit-error" class="form__input-error"></span>
+              <input
+                class="form__input"
+                name="about-edit_input"
+                id="about-edit"
+                type="text"
+                placeholder="About"
+                minlength="2"
+                maxlength="200"
+                required
+              />
+              <span id="about-edit-error" class="form__input-error"></span>
+              <button
+                class="button button_form_submit button_submit-edit-profile"
+                type="submit"
+              >
+                Save
+              </button>
+            </fieldset>
+          </form>
+        </div>
       </div>
-    </div>
-    <div class="popup popup_card-add">
-      <div class="popup__overlay"></div>
-      <div class="popup__container">
-        <button class="button button_popup_close" type="button"></button>
-        <form class="form" name="add-card_form" novalidate>
-          <fieldset class="form__container">
-            <legend class="form__title">
-              Новое место
-            </legend>
-            <input class="form__input" name="name-card_input" id="name-card" type="text" placeholder="Название"
-              minlength="2" maxlength="30" required />
-            <span id="name-card-error" class="form__input-error"></span>
-            <input class="form__input" name="link-card_input" id="link-card" placeholder="Ссылка на картинку" type="url"
-              required />
-            <span id="link-card-error" class="form__input-error"></span>
-            <button class="button button_form_submit button_submit-add-card" type="submit">
-              Создать
-            </button>
-          </fieldset>
-        </form>
+      <div class="popup popup_card-add">
+        <div class="popup__overlay"></div>
+        <div class="popup__container">
+          <button class="button button_popup_close" type="button"></button>
+          <form class="form" name="add-card_form" novalidate>
+            <fieldset class="form__container">
+              <legend class="form__title">New place</legend>
+              <input
+                class="form__input"
+                name="name-card_input"
+                id="name-card"
+                type="text"
+                placeholder="Name"
+                minlength="2"
+                maxlength="30"
+                required
+              />
+              <span id="name-card-error" class="form__input-error"></span>
+              <input
+                class="form__input"
+                name="link-card_input"
+                id="link-card"
+                placeholder="Link to image"
+                type="url"
+                required
+              />
+              <span id="link-card-error" class="form__input-error"></span>
+              <button
+                class="button button_form_submit button_submit-add-card"
+                type="submit"
+              >
+                Create
+              </button>
+            </fieldset>
+          </form>
+        </div>
       </div>
-    </div>
 
-    <div class="popup popup_card-fullscreen">
-      <div class="popup__overlay"></div>
-      <figure class="popup__figure">
-        <button class="button button_popup_close"></button>
-        <img src="#" alt="" class="popup__image" />
-        <figcaption class="popup__image-title"></figcaption>
-      </figure>
-    </div>
-    <div class="popup popup_card-delete-confirm">
-      <div class="popup__overlay"></div>
-      <div class="popup__container">
-        <button class="button button_popup_close" type="button"></button>
-        <form class="form">
-          <p class="form__title">
-            Вы уверены?
-          </p>
-          <button class="button button_form_submit button_form_submit-delete-card" type="submit">
-            Да
-          </button>
-        </form>
+      <div class="popup popup_card-fullscreen">
+        <div class="popup__overlay"></div>
+        <figure class="popup__figure">
+          <button class="button button_popup_close"></button>
+          <img src="#" alt="Opened card" class="popup__image" />
+          <figcaption class="popup__image-title"></figcaption>
+        </figure>
       </div>
-    </div>
-
-    <div class="popup popup_edit-avatar">
-      <div class="popup__overlay"></div>
-      <div class="popup__container">
-        <button class="button button_popup_close" type="button"></button>
-        <form class="form" name="edit-avatar_form" novalidate>
-          <fieldset class="form__container">
-            <legend class="form__title">
-              Обновить аватар
-            </legend>
-            <input class="form__input" name="link-avatar_input" id="link-avatar" placeholder="Ссылка на картинку"
-              type="url" required />
-            <span id="link-avatar-error" class="form__input-error"></span>
-            <button class="button button_form_submit button_submit-change-avatar" type="submit">
-              Сохранить
+      <div class="popup popup_card-delete-confirm">
+        <div class="popup__overlay"></div>
+        <div class="popup__container">
+          <button class="button button_popup_close" type="button"></button>
+          <form class="form">
+            <p class="form__title">Are you sure?</p>
+            <button
+              class="button button_form_submit button_form_submit-delete-card"
+              type="submit"
+            >
+              Yes
             </button>
-          </fieldset>
-        </form>
+          </form>
+        </div>
+      </div>
+
+      <div class="popup popup_edit-avatar">
+        <div class="popup__overlay"></div>
+        <div class="popup__container">
+          <button class="button button_popup_close" type="button"></button>
+          <form class="form" name="edit-avatar_form" novalidate>
+            <fieldset class="form__container">
+              <legend class="form__title">Update profile image</legend>
+              <input
+                class="form__input"
+                name="link-avatar_input"
+                id="link-avatar"
+                placeholder="Link to image"
+                type="url"
+                required
+              />
+              <span id="link-avatar-error" class="form__input-error"></span>
+              <button
+                class="button button_form_submit button_submit-change-avatar"
+                type="submit"
+              >
+                Save
+              </button>
+            </fieldset>
+          </form>
+        </div>
       </div>
     </div>
-  </div>
-</body>
-
+  </body>
 </html>

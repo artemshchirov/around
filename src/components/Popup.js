@@ -1,7 +1,7 @@
 export default class Popup {
   /**
    * Open and close popups. Also set event listeners
-   * 
+   *
    * @constructor
    * @this   {Popup}
    * @param  {string} popupSelector - selector for finding popup-element on page
@@ -12,7 +12,7 @@ export default class Popup {
     this._handleEscClose = this._handleEscClose.bind(this);
   }
 
-  open() { 
+  open() {
     document.addEventListener('keydown', this._handleEscClose);
     this._element.classList.add('popup_opened');
   }
@@ -30,6 +30,6 @@ export default class Popup {
   }
 
   _handleEscClose(evt) {
-    if (evt.key === "Escape") this.close();    
+    if (evt.key === 'Escape') this.close();
   }
 }

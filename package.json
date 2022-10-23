@@ -1,24 +1,23 @@
 {
-  "name": "mesto",
+  "name": "around",
   "version": "0.0.9",
-  "description": "Редактируемая галерея фотографий с возможностью поставить им лайк",
+  "description": "Web page showing a user's information and photos they have uploaded",
   "main": "index.js",
   "scripts": {
     "build": "webpack --mode production",
     "dev": "webpack serve",
-    "predeploy": "npm run build",
-    "deploy": "gh-pages -d dist"
+    "deploy": "npm run build && gh-pages -d dist"
   },
   "repository": {
     "type": "git",
-    "url": "git+https://github.com/artemschirov/mesto.git"
+    "url": "git+https://github.com/artemshchirov/around.git"
   },
-  "author": "Artem Schirov",
+  "author": "Artem Shchirov",
   "license": "ISC",
   "bugs": {
-    "url": "https://github.com/artemschirov/mesto/issues"
+    "url": "https://github.com/artemshchirov/around/issues"
   },
-  "homepage": "https://github.com/artemschirov/mesto#readme",
+  "homepage": "https://github.com/artemshchirov/around#readme",
   "devDependencies": {
     "@babel/core": "^7.16.12",
     "@babel/preset-env": "^7.16.11",
